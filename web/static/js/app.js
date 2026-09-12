@@ -524,9 +524,9 @@
       updateMetricsHUD();
 
       if (data.simulation) {
-        if (hudStatusBadge) hudStatusBadge.innerHTML = `⚡ Scenario: <b>${data.simulation.preset}</b>`;
+        if (hudStatusBadge) hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Scenario: <b>${data.simulation.preset}</b>`;
       } else {
-        if (hudStatusBadge) hudStatusBadge.innerHTML = `⚡ Status: <b>Optimal Response Active</b>`;
+        if (hudStatusBadge) hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Status: <b>Optimal Response Active</b>`;
       }
     } catch (err) {
       console.error("Failed to load grid data:", err);
@@ -776,7 +776,7 @@
       updateMetricsHUD();
 
       if (hudStatusBadge) {
-        hudStatusBadge.innerHTML = `⚡ Scenario: <b>${payload.scenario_preset}</b>`;
+        hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Scenario: <b>${payload.scenario_preset}</b>`;
       }
     } catch (err) {
       alert(`Simulation error: ${err.message}`);
@@ -804,7 +804,7 @@
       updateMetricsHUD();
 
       if (hudStatusBadge) {
-        hudStatusBadge.innerHTML = `⚡ Status: <b>Optimal Baseline Active</b>`;
+        hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Status: <b>Optimal Baseline Active</b>`;
       }
     } catch (e) {
       alert(`Reset error: ${e.message}`);
@@ -865,7 +865,7 @@
         if (!res.ok) throw new Error(data.error || 'Upload error');
 
         statusBox.style.color = '#166534';
-        statusBox.textContent = `✓ Uploaded ${file.name}! 25 crews optimized.`;
+        statusBox.textContent = `Uploaded ${file.name}! 25 crews optimized.`;
 
         currentGridData = data.grid || [];
         currentCrews = data.crews || [];
