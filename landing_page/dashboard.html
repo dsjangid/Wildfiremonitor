@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Montesinho Wildfire Response 3D Command Center — Donezo Console</title>
+  
+  <!-- Modern Clean Fonts & Styles -->
+  <link rel="stylesheet" href="web/static/css/unified.css" />
+  
+  <!-- Three.js & OrbitControls for 3D Terrain Visualization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+  <!-- Master App Frame (Donezo Rounded Clean Shell) -->
+  <div class="dashboard-app-frame">
+
+    <!-- ==========================================
+         LEFT SIDEBAR
+         ========================================== -->
+    <aside class="sidebar">
+      <div>
+        <!-- Brand Logo -->
+        <div class="brand-container" onclick="location.href='index.html'">
+          <svg class="brand-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="10" fill="#E8F8F0"/>
+            <path d="M18 10C14.6863 10 12 12.6863 12 16C12 18.5 13.5 20.5 15.5 21.5L18 24L20.5 21.5C22.5 20.5 24 18.5 24 16C24 12.6863 21.3137 10 18 10Z" stroke="#123D2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="18" cy="15.5" r="2.5" fill="#45C486"/>
+            <path d="M10 18C10 21.3137 12.6863 24 16 24C18.5 24 20.5 22.5 21.5 20.5" stroke="#123D2B" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="brand-title">WildfireOps</div>
+            <div class="brand-subtitle">Donezo Tactical Engine</div>
+          </div>
+        </div>
+
+        <!-- Command Section -->
+        <div class="nav-section-title">Command</div>
+        <ul class="nav-list">
+          <li class="nav-item active" id="nav-item-3d">
+            <a href="index.html">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
+              </svg>
+              <span>3D Terrain Grid</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="web/static/portfolio.html">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>25 Crews Portfolio</span>
+              <span class="badge-pill" id="sidebar-crew-count">25</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="web/static/matrix.html">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="3" y1="15" x2="21" y2="15"></line>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+                <line x1="15" y1="3" x2="15" y2="21"></line>
+              </svg>
+              <span>9×9 Heat Matrix</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="web/static/simulation.html">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+              </svg>
+              <span>Weather Sandbox</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="web/static/analytics.html">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 16 12 12 8 16"></polyline>
+                <line x1="12" y1="12" x2="12" y2="21"></line>
+                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+              </svg>
+              <span>Model &amp; Evaluation</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="web/static/assets.html">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <span>Modular Assets</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Export & Reset Section -->
+        <div class="nav-section-title">System &amp; Export</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="/api/download/portfolio" target="_blank" download="selected_portfolio.csv">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>portfolio.csv</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/api/download/predictions" target="_blank" download="predictions.csv">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span>predictions.csv</span>
+          <li class="nav-item">
+            <a id="btn-sidebar-reset" onclick="resetToBaseline()" title="Reset back to baseline data">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              <span>Reset Baseline</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bottom Card (Donezo Matroid Status) -->
+      <div class="sidebar-promo-card">
+        <div class="promo-badge-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="promo-title">Matroid Optimizer<br/>Constrained Engine</div>
+        <div class="promo-desc">Strictly ≤ 4 crews per (X, Y) cell. Exactly 25 dispatches.</div>
+        <button class="btn-promo-action" onclick="resetToBaseline()">Reset Baseline</button>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         MAIN CONTENT WRAPPER
+         ========================================== -->
+    <main class="main-wrapper">
+
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <!-- Search -->
+        <div class="search-box-container">
+          <svg class="search-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="global-search" class="search-input" placeholder="Search sector (e.g. X:8, Y:6), rank, or weather index..." />
+          <span class="search-shortcut-badge">⌘F</span>
+        </div>
+
+        <!-- Top Right Actions & Profile -->
+        <div class="topbar-actions">
+          <div class="system-status-pill">
+            <span class="status-dot-live"></span>
+            <span id="badge-model">Hurdle Ensemble Online</span>
+          </div>
+
+          <!-- User Profile -->
+          <div class="user-profile-pill">
+            <img class="user-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Incident Commander" />
+            <div class="user-info-text">
+              <span class="user-name">Incident Commander</span>
+              <span class="user-email" id="eval-source-label">forestfires.csv</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEADER TITLE & ACTIONS -->
+      <div class="dashboard-header">
+        <div class="header-title-group">
+          <h1>Wildfire Response Prioritization</h1>
+          <p class="header-subtitle">Autonomous crew dispatch, 9×9 spatial risk mapping, and constrained matroid optimization.</p>
+        </div>
+        <div class="header-btn-group">
+          <button class="btn-primary-dark" onclick="scrollToSection('panel-weather-sim')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>What-If Simulate</span>
+          </button>
+          <button class="btn-secondary-white" onclick="document.getElementById('csv-file-input').click()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 16 12 12 8 16"></polyline>
+              <line x1="12" y1="12" x2="12" y2="21"></line>
+              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+            </svg>
+            <span>Import CSV</span>
+          </button>
+          <a href="/api/download/portfolio" class="btn-secondary-white" download="selected_portfolio.csv">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Export Portfolio</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           4 TOP KPI METRIC CARDS (DONEZO STYLE)
+           ========================================== -->
+      <div class="kpi-grid">
+        <!-- 1. Active Crews Deployed (Dark Forest Green Card) -->
+        <div class="kpi-card dark-card">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Active Crews Deployed</span>
+            <div class="kpi-arrow-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpi-crews-deployed">25 / 25</div>
+          <div class="kpi-footer-tag">
+            <span class="kpi-badge-num">100%</span>
+            <span>Target Portfolio: Exactly 25</span>
+          </div>
+        </div>
+
+        <!-- 2. Max In Cell Constraint -->
+        <div class="kpi-card light-card">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Max In Sector</span>
+            <div class="kpi-arrow-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpi-max-per-cell">4 / 4</div>
+          <div class="kpi-footer-tag">
+            <span class="kpi-badge-num" id="kpi-constraint-badge">OK</span>
+            <span>Strict Limit: &le; 4 per cell</span>
+          </div>
+        </div>
+
+        <!-- 3. Unique Sectors Covered -->
+        <div class="kpi-card light-card">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Unique Sectors Covered</span>
+            <div class="kpi-arrow-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpi-unique-sectors">13 Sectors</div>
+          <div class="kpi-footer-tag">
+            <span class="kpi-badge-num">9&times;9</span>
+            <span>Spatial Spread Across Park</span>
+          </div>
+        </div>
+
+        <!-- 4. Candidate Incidents Evaluated -->
+        <div class="kpi-card light-card">
+          <div class="kpi-card-header">
+            <span class="kpi-label">Candidate Incidents</span>
+            <div class="kpi-arrow-circle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div class="kpi-value" id="kpi-total-eval-rows">517 Fires</div>
+          <div class="kpi-footer-tag">
+            <span style="color: var(--primary-mint); font-weight: 700;" id="kpi-dataset-tag">forestfires.csv</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           FULL-WIDTH 3D TERRAIN STAGE (PANORAMIC COMMAND VIEW)
+           ========================================== -->
+      <div class="panel-card" id="panel-3d-stage" style="margin-bottom: 20px;">
+        <div class="panel-header">
+          <span class="panel-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            3D Montesinho Terrain Grid (9&times;9 Command Stage)
+          </span>
+          <div class="view-btn-group">
+            <button class="view-btn active" id="view-iso">3D Iso</button>
+            <button class="view-btn" id="view-top">Top 2D</button>
+            <button class="view-btn" id="view-low">Horizon</button>
+            <button class="view-btn" id="view-rotate">Rotate</button>
+          </div>
+        </div>
+
+        <!-- Canvas Viewport -->
+        <div class="canvas-wrapper" id="canvas-wrapper">
+          <canvas id="webgl-canvas"></canvas>
+          
+          <!-- HUD info -->
+          <div class="hud-overlay">
+            <div class="hud-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle; margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Sector Grid: <b>9&times;9 Montesinho Park</b>
+            </div>
+            <div class="hud-tag" id="hud-status-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              Status: <b>Optimal Response Active</b>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="grid-legend">
+            <div style="font-weight: 700;">Fire Risk Index</div>
+            <div class="legend-bar"></div>
+            <div style="display: flex; justify-content: space-between; font-size: 9px; opacity: 0.8;">
+              <span>0.0 (Low)</span>
+              <span>1.0 (Extreme)</span>
+            </div>
+          </div>
+
+          <!-- Raycaster Tooltip -->
+          <div class="cell-floating-tooltip" id="cell-tooltip"></div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           MAIN 3-COLUMN CONTENT GRID (BOTTOM)
+           ========================================== -->
+      <div class="dashboard-content-grid">
+
+        <!-- ==============================
+             LEFT COLUMN (PORTFOLIO)
+             ============================== -->
+        <div class="grid-column">
+          
+          <!-- Response Portfolio Table (25 Dispatched Crews) -->
+          <div class="panel-card" id="panel-portfolio">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                Selected Response Portfolio (25 Crews)
+              </span>
+              <a href="/api/download/portfolio" class="btn-pill-small" download="selected_portfolio.csv">
+                <span>Export CSV</span>
+              </a>
+            </div>
+
+            <div class="table-container-scroll">
+              <table class="portfolio-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Impact Score</th>
+                    <th>Sector (X, Y)</th>
+                    <th>Month / Day</th>
+                    <th>Temp</th>
+                    <th>Wind</th>
+                    <th>RH</th>
+                    <th>FFMC</th>
+                    <th>ISI</th>
+                    <th>Quota</th>
+                  </tr>
+                </thead>
+                <tbody id="portfolio-table-body">
+                  <tr><td colspan="10" style="text-align: center; color: var(--text-muted);">Loading response portfolio...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==============================
+             MIDDLE COLUMN (WEATHER SIM & 9x9 MATRIX)
+             ============================== -->
+        <div class="grid-column">
+          
+          <!-- What-If Fire Weather Sandbox -->
+          <div class="panel-card" id="panel-weather-sim">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+                What-If Weather Simulator
+              </span>
+            </div>
+
+            <!-- Preset Scenarios -->
+            <div class="sim-preset-row">
+              <button class="sim-preset-btn" id="preset-heatwave">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3z"></path></svg>
+                <span>Heatwave</span>
+              </button>
+              <button class="sim-preset-btn" id="preset-gale">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg>
+                <span>Gale Wind</span>
+              </button>
+              <button class="sim-preset-btn" id="preset-rain">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><line x1="16" y1="13" x2="16" y2="21"></line><line x1="8" y1="13" x2="8" y2="21"></line><line x1="12" y1="15" x2="12" y2="23"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></svg>
+                <span>Rain</span>
+              </button>
+              <button class="sim-preset-btn" id="preset-normal">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polygon points="12 2 2 22 22 22 12 2"></polygon></svg>
+                <span>Baseline</span>
+              </button>
+            </div>
+
+            <!-- Sliders -->
+            <div class="sim-slider-box">
+              <div class="slider-unit-row">
+                <div class="slider-label-flex">
+                  <span>Temperature Shift:</span>
+                  <span class="slider-val-tag" id="val-temp-delta">+0.0°C</span>
+                </div>
+                <input type="range" id="slider-temp" min="-15" max="15" step="1" value="0" />
+              </div>
+
+              <div class="slider-unit-row">
+                <div class="slider-label-flex">
+                  <span>Relative Humidity Shift:</span>
+                  <span class="slider-val-tag" id="val-rh-delta">+0%</span>
+                </div>
+                <input type="range" id="slider-rh" min="-30" max="30" step="1" value="0" />
+              </div>
+
+              <div class="slider-unit-row">
+                <div class="slider-label-flex">
+                  <span>Wind Speed Shift:</span>
+                  <span class="slider-val-tag" id="val-wind-delta">+0.0 km/h</span>
+                </div>
+                <input type="range" id="slider-wind" min="-10" max="25" step="1" value="0" />
+              </div>
+            </div>
+
+            <button class="btn-simulate-rebalance" id="btn-run-sim">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span>Simulate &amp; Rebalance Crews</span>
+            </button>
+          </div>
+
+          <!-- 9x9 Spatial Matrix -->
+          <div class="panel-card" id="panel-matrix">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                9&times;9 Coordinate Heat Matrix
+              </span>
+              <span style="font-size: 11px; color: var(--text-muted);">Y: 9&darr;1, X: 1&rarr;9</span>
+            </div>
+
+            <div class="matrix-grid-9x9" id="matrix-grid">
+              <!-- Dynamically populated 81 cells -->
+            </div>
+          </div>
+
+          <!-- Model Performance Rubric -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-title">Model Prioritization Accuracy</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center;">
+              <div style="background: var(--bg-subtle); padding: 10px 4px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10px; color: var(--text-muted); font-weight: 700;">NDCG@25</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary-dark);" id="metric-ndcg">0.2288</div>
+                <div style="font-size: 9.5px; color: var(--primary-mint); font-weight: 700;">+106% vs Trees</div>
+              </div>
+              <div style="background: var(--bg-subtle); padding: 10px 4px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10px; color: var(--text-muted); font-weight: 700;">Tail Recall</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary-dark);" id="metric-recall">32.2%</div>
+                <div style="font-size: 9.5px; color: var(--accent-amber); font-weight: 700;">Top 20% tails</div>
+              </div>
+              <div style="background: var(--bg-subtle); padding: 10px 4px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10px; color: var(--text-muted); font-weight: 700;">Rubric Score</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary-dark);" id="metric-rubric">29.19</div>
+                <div style="font-size: 9.5px; color: var(--primary-dark); font-weight: 700;">/ 100 max</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ==============================
+             RIGHT COLUMN (INSPECTOR, UPLOADER, TIMER)
+             ============================== -->
+        <div class="grid-column">
+          
+          <!-- Tactical Sector Inspector -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+                Sector Inspector
+              </span>
+              <span class="btn-pill-small" id="inspector-coords-badge">Cell (X: --, Y: --)</span>
+            </div>
+
+            <div class="inspector-detail-grid" id="inspector-grid">
+              <div class="inspector-data-item">
+                <span class="data-item-label">Fire Severity Score:</span>
+                <span class="data-item-val" id="insp-impact">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Crews Dispatched:</span>
+                <span class="data-item-val" id="insp-crews">0 / 4</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Local Temperature:</span>
+                <span class="data-item-val" id="insp-temp">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Wind Speed:</span>
+                <span class="data-item-val" id="insp-wind">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Atmospheric RH:</span>
+                <span class="data-item-val" id="insp-rh">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Fine Fuel (FFMC):</span>
+                <span class="data-item-val" id="insp-ffmc">--</span>
+              </div>
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px; display:flex; align-items:center; gap:4px;">
+              <span style="display:inline-flex; width:13px; height:13px; background:var(--border-card); border-radius:50%; align-items:center; justify-content:center; font-size:9px; font-weight:bold; color:var(--text-secondary);">i</span>
+              <span>Click any 3D pillar or 9&times;9 matrix cell to inspect.</span>
+            </div>
+          </div>
+
+          <!-- Evaluation CSV Uploader -->
+          <div class="panel-card" id="panel-uploader">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path></svg>
+                Upload Candidate CSV
+              </span>
+            </div>
+
+            <div class="dropzone-box" id="upload-dropzone" onclick="document.getElementById('csv-file-input').click()">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#45c486" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 6px auto; display: block;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <div class="dropzone-title">Drop CSV file here</div>
+              <div class="dropzone-subtitle">or click to browse from device</div>
+              <input type="file" id="csv-file-input" accept=".csv" style="display: none;" />
+            </div>
+            <div id="upload-status" style="margin-top: 8px; font-size: 11px; display: none;"></div>
+          </div>
+
+          <!-- Mission Operations Clock (Donezo Time Tracker) -->
+          <div class="time-tracker-card">
+            <div class="time-tracker-title">Mission Operations Clock</div>
+            <div class="time-display-digital" id="timerDigitalDisplay">01:24:08</div>
+            <div class="time-controls-row">
+              <button class="btn-time-control btn-time-pause" id="btnTimerPause" onclick="toggleTimer()" title="Pause / Resume">
+                <svg id="timerPauseIcon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+                  <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+                </svg>
+              </button>
+              <button class="btn-time-control btn-time-stop" id="btnTimerReset" onclick="resetTimer()" title="Reset Clock">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                  <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Unified Application Script -->
+  <script src="web/static/js/app.js" data-static="/static/js/app.js"></script>
+</body>
+</html>

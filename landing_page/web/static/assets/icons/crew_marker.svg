@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="crewGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#4facfe" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f2fe"/>
+      <stop offset="50%" stop-color="#4facfe"/>
+      <stop offset="100%" stop-color="#0066eb"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#crewGlow)" opacity="0.4"/>
+  <!-- Tactical Hex Shield -->
+  <polygon points="32,6 54,18 54,44 32,58 10,44 10,18" fill="url(#shieldGrad)" stroke="#ffffff" stroke-width="2.5" filter="drop-shadow(0 2px 8px rgba(0,242,254,0.6))"/>
+  <!-- Crew Helm / Firefighter Silhouette -->
+  <path d="M32 16 C25 16 20 21 20 27 C20 31 22 34 25 36 L25 43 L39 43 L39 36 C42 34 44 31 44 27 C44 21 39 16 32 16 Z" fill="#ffffff"/>
+  <!-- Front Shield Visor -->
+  <path d="M25 25 Q32 29 39 25 Q32 32 25 25 Z" fill="#0b172a"/>
+  <!-- Radio Star / Chevron -->
+  <polygon points="32,46 35,51 32,49 29,51" fill="#ffdd00"/>
+</svg>

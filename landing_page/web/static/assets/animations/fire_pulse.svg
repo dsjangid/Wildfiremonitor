@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="pulseRed" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff1744" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#ff5252" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ff1744" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <style>
+    @keyframes pulseRing {
+      0% { r: 10px; opacity: 0.9; }
+      50% { r: 50px; opacity: 0.4; }
+      100% { r: 10px; opacity: 0.9; }
+    }
+    .pulse-circle {
+      animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
+  <circle class="pulse-circle" cx="60" cy="60" r="30" fill="url(#pulseRed)"/>
+  <circle cx="60" cy="60" r="10" fill="#ffeb3b" filter="drop-shadow(0 0 6px #ff5722)"/>
+</svg>
