@@ -1,4 +1,9 @@
 /**
+ * Embedded offline baseline dataset (81 grid cells + 25 optimal matroid crew assignments)
+ */
+const EMBEDDED_BASELINE = {"crews":[{"DC":671.2,"DMC":181.1,"FFMC":96.1,"ISI":14.3,"RH":63.0,"day":"TUE","impact_score":0.9593,"month":"AUG","priority_rank":1,"rain":6.4,"temp":27.3,"wind":4.9,"x":7,"y":5},{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":24.0,"day":"TUE","impact_score":0.9101,"month":"DEC","priority_rank":2,"rain":0.0,"temp":5.1,"wind":8.5,"x":6,"y":5},{"DC":354.6,"DMC":27.8,"FFMC":84.0,"ISI":5.3,"RH":61.0,"day":"WED","impact_score":0.8661,"month":"DEC","priority_rank":3,"rain":0.0,"temp":5.1,"wind":8.0,"x":8,"y":6},{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"MON","impact_score":0.8521,"month":"DEC","priority_rank":4,"rain":0.0,"temp":4.6,"wind":8.5,"x":4,"y":4},{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"MON","impact_score":0.8521,"month":"DEC","priority_rank":5,"rain":0.0,"temp":4.6,"wind":8.5,"x":4,"y":4},{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"MON","impact_score":0.8521,"month":"DEC","priority_rank":6,"rain":0.0,"temp":4.6,"wind":8.5,"x":4,"y":4},{"DC":353.5,"DMC":27.2,"FFMC":84.4,"ISI":6.8,"RH":57.0,"day":"SUN","impact_score":0.8425,"month":"DEC","priority_rank":7,"rain":0.0,"temp":4.8,"wind":8.5,"x":4,"y":6},{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"MON","impact_score":0.8418,"month":"DEC","priority_rank":8,"rain":0.0,"temp":4.6,"wind":8.5,"x":3,"y":4},{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":77.0,"day":"SUN","impact_score":0.7826,"month":"SEP","priority_rank":9,"rain":0.0,"temp":13.8,"wind":7.6,"x":7,"y":4},{"DC":795.9,"DMC":263.1,"FFMC":88.9,"ISI":5.2,"RH":27.0,"day":"SUN","impact_score":0.7172,"month":"JUL","priority_rank":10,"rain":0.0,"temp":29.3,"wind":3.6,"x":8,"y":6},{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":77.0,"day":"SUN","impact_score":0.7138,"month":"SEP","priority_rank":11,"rain":0.0,"temp":13.8,"wind":7.6,"x":4,"y":5},{"DC":587.1,"DMC":130.3,"FFMC":94.9,"ISI":14.1,"RH":27.0,"day":"SUN","impact_score":0.6991,"month":"AUG","priority_rank":12,"rain":0.0,"temp":31.0,"wind":5.4,"x":8,"y":6},{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":76.0,"day":"SUN","impact_score":0.6803,"month":"SEP","priority_rank":13,"rain":0.0,"temp":14.5,"wind":7.6,"x":1,"y":4},{"DC":43.6,"DMC":3.2,"FFMC":84.6,"ISI":3.3,"RH":53.0,"day":"FRI","impact_score":0.6767,"month":"FEB","priority_rank":14,"rain":0.0,"temp":8.2,"wind":9.4,"x":7,"y":4},{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":43.0,"day":"SUN","impact_score":0.674,"month":"SEP","priority_rank":15,"rain":0.0,"temp":21.9,"wind":4.0,"x":1,"y":3},{"DC":860.6,"DMC":291.3,"FFMC":87.1,"ISI":4.0,"RH":67.0,"day":"SAT","impact_score":0.6717,"month":"SEP","priority_rank":16,"rain":0.0,"temp":17.0,"wind":4.9,"x":6,"y":5},{"DC":106.7,"DMC":3.0,"FFMC":79.5,"ISI":1.1,"RH":31.0,"day":"TUE","impact_score":0.6698,"month":"NOV","priority_rank":17,"rain":0.0,"temp":11.8,"wind":4.5,"x":6,"y":3},{"DC":680.7,"DMC":124.1,"FFMC":92.4,"ISI":8.5,"RH":32.0,"day":"SUN","impact_score":0.6685,"month":"SEP","priority_rank":18,"rain":0.0,"temp":23.9,"wind":6.7,"x":1,"y":3},{"DC":715.1,"DMC":231.1,"FFMC":93.7,"ISI":8.4,"RH":31.0,"day":"SAT","impact_score":0.664,"month":"AUG","priority_rank":19,"rain":0.0,"temp":26.9,"wind":3.6,"x":8,"y":6},{"DC":849.3,"DMC":287.2,"FFMC":89.7,"ISI":6.8,"RH":45.0,"day":"THU","impact_score":0.6634,"month":"SEP","priority_rank":20,"rain":0.0,"temp":19.4,"wind":3.6,"x":7,"y":4},{"DC":721.4,"DMC":145.4,"FFMC":93.4,"ISI":8.1,"RH":24.0,"day":"SAT","impact_score":0.6513,"month":"SEP","priority_rank":21,"rain":0.0,"temp":30.2,"wind":2.7,"x":6,"y":3},{"DC":819.1,"DMC":273.8,"FFMC":91.6,"ISI":7.7,"RH":44.0,"day":"SAT","impact_score":0.6497,"month":"AUG","priority_rank":22,"rain":0.0,"temp":21.3,"wind":4.5,"x":8,"y":4},{"DC":698.6,"DMC":88.0,"FFMC":92.5,"ISI":7.1,"RH":51.0,"day":"SAT","impact_score":0.6488,"month":"SEP","priority_rank":23,"rain":0.0,"temp":17.8,"wind":7.2,"x":7,"y":5},{"DC":635.9,"DMC":191.4,"FFMC":91.7,"ISI":7.8,"RH":36.0,"day":"WED","impact_score":0.6487,"month":"AUG","priority_rank":24,"rain":0.0,"temp":26.2,"wind":4.5,"x":8,"y":8},{"DC":728.6,"DMC":149.3,"FFMC":93.5,"ISI":8.1,"RH":26.0,"day":"SUN","impact_score":0.6457,"month":"SEP","priority_rank":25,"rain":0.0,"temp":28.3,"wind":3.1,"x":4,"y":6}],"grid":[{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":1,"y":1},{"avg_impact":0.3594648217654737,"crew_details":[],"crews_assigned":0,"max_impact":0.5826603402709183,"observation_count":19,"sample_weather":{"DC":728.6,"DMC":149.3,"FFMC":93.5,"ISI":8.1,"RH":36.0,"day":"sun","month":"sep","rain":0.0,"temp":25.3,"wind":3.6},"x":1,"y":2},{"avg_impact":0.4581825053171536,"crew_details":[{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":43.0,"day":"sun","impact_score":0.674,"month":"sep","priority_rank":15,"rain":0.0,"temp":21.9,"wind":4.0},{"DC":680.7,"DMC":124.1,"FFMC":92.4,"ISI":8.5,"RH":32.0,"day":"sun","impact_score":0.6685,"month":"sep","priority_rank":18,"rain":0.0,"temp":23.9,"wind":6.7}],"crews_assigned":2,"max_impact":0.6740287533022997,"observation_count":10,"sample_weather":{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":43.0,"day":"sun","month":"sep","rain":0.0,"temp":21.9,"wind":4.0},"x":1,"y":3},{"avg_impact":0.39796428813057755,"crew_details":[{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":76.0,"day":"sun","impact_score":0.6803,"month":"sep","priority_rank":13,"rain":0.0,"temp":14.5,"wind":7.6}],"crews_assigned":1,"max_impact":0.6803021676212595,"observation_count":15,"sample_weather":{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":76.0,"day":"sun","month":"sep","rain":0.0,"temp":14.5,"wind":7.6},"x":1,"y":4},{"avg_impact":0.5150117905131044,"crew_details":[],"crews_assigned":0,"max_impact":0.6002687606948086,"observation_count":4,"sample_weather":{"DC":728.6,"DMC":149.3,"FFMC":93.5,"ISI":8.1,"RH":27.0,"day":"sun","month":"sep","rain":0.0,"temp":27.8,"wind":3.1},"x":1,"y":5},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":1,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":1,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":1,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":1,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":2,"y":1},{"avg_impact":0.38182136585416115,"crew_details":[],"crews_assigned":0,"max_impact":0.49293484297586837,"observation_count":25,"sample_weather":{"DC":668.0,"DMC":117.9,"FFMC":92.4,"ISI":12.2,"RH":33.0,"day":"fri","month":"sep","rain":0.0,"temp":19.6,"wind":6.3},"x":2,"y":2},{"avg_impact":0.4917832216881605,"crew_details":[],"crews_assigned":0,"max_impact":0.4917832216881605,"observation_count":1,"sample_weather":{"DC":764.0,"DMC":108.4,"FFMC":91.6,"ISI":6.2,"RH":51.0,"day":"mon","month":"sep","rain":0.0,"temp":18.0,"wind":5.4},"x":2,"y":3},{"avg_impact":0.4061768647516669,"crew_details":[],"crews_assigned":0,"max_impact":0.5699166098996832,"observation_count":27,"sample_weather":{"DC":664.5,"DMC":203.2,"FFMC":92.0,"ISI":8.1,"RH":42.0,"day":"sun","month":"aug","rain":0.0,"temp":24.9,"wind":5.4},"x":2,"y":4},{"avg_impact":0.3978712877061795,"crew_details":[],"crews_assigned":0,"max_impact":0.5700715376453003,"observation_count":20,"sample_weather":{"DC":587.1,"DMC":130.3,"FFMC":94.9,"ISI":14.1,"RH":25.0,"day":"sun","month":"aug","rain":0.0,"temp":33.1,"wind":4.0},"x":2,"y":5},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":2,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":2,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":2,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":2,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":3,"y":1},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":3,"y":2},{"avg_impact":0.48508559672769513,"crew_details":[],"crews_assigned":0,"max_impact":0.48508559672769513,"observation_count":1,"sample_weather":{"DC":751.5,"DMC":102.3,"FFMC":92.2,"ISI":8.4,"RH":27.0,"day":"sat","month":"sep","rain":0.0,"temp":24.2,"wind":3.1},"x":3,"y":3},{"avg_impact":0.40802890286402416,"crew_details":[{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"mon","impact_score":0.8418,"month":"dec","priority_rank":8,"rain":0.0,"temp":4.6,"wind":8.5}],"crews_assigned":1,"max_impact":0.8417517756721677,"observation_count":43,"sample_weather":{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"mon","month":"dec","rain":0.0,"temp":4.6,"wind":8.5},"x":3,"y":4},{"avg_impact":0.37646940710751925,"crew_details":[],"crews_assigned":0,"max_impact":0.4668773681874286,"observation_count":7,"sample_weather":{"DC":673.8,"DMC":37.9,"FFMC":91.4,"ISI":5.2,"RH":46.0,"day":"wed","month":"oct","rain":0.0,"temp":15.9,"wind":3.6},"x":3,"y":5},{"avg_impact":0.28843182182775295,"crew_details":[],"crews_assigned":0,"max_impact":0.3892636040019072,"observation_count":4,"sample_weather":{"DC":686.5,"DMC":126.5,"FFMC":90.9,"ISI":7.0,"RH":66.0,"day":"mon","month":"sep","rain":0.0,"temp":15.6,"wind":3.1},"x":3,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":3,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":3,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":3,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":4,"y":1},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":4,"y":2},{"avg_impact":0.3872967131093994,"crew_details":[],"crews_assigned":0,"max_impact":0.5568137447011187,"observation_count":22,"sample_weather":{"DC":855.3,"DMC":290.0,"FFMC":90.3,"ISI":7.4,"RH":44.0,"day":"fri","month":"sep","rain":0.0,"temp":19.9,"wind":3.1},"x":4,"y":3},{"avg_impact":0.4236805048999953,"crew_details":[{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"mon","impact_score":0.8521,"month":"dec","priority_rank":4,"rain":0.0,"temp":4.6,"wind":8.5},{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"mon","impact_score":0.8521,"month":"dec","priority_rank":5,"rain":0.0,"temp":4.6,"wind":8.5},{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"mon","impact_score":0.8521,"month":"dec","priority_rank":6,"rain":0.0,"temp":4.6,"wind":8.5}],"crews_assigned":3,"max_impact":0.8521457913285151,"observation_count":36,"sample_weather":{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":21.0,"day":"mon","month":"dec","rain":0.0,"temp":4.6,"wind":8.5},"x":4,"y":4},{"avg_impact":0.40006990543027926,"crew_details":[{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":77.0,"day":"sun","impact_score":0.7138,"month":"sep","priority_rank":11,"rain":0.0,"temp":13.8,"wind":7.6}],"crews_assigned":1,"max_impact":0.713815994706825,"observation_count":25,"sample_weather":{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":77.0,"day":"sun","month":"sep","rain":0.0,"temp":13.8,"wind":7.6},"x":4,"y":5},{"avg_impact":0.5213662660872033,"crew_details":[{"DC":353.5,"DMC":27.2,"FFMC":84.4,"ISI":6.8,"RH":57.0,"day":"sun","impact_score":0.8425,"month":"dec","priority_rank":7,"rain":0.0,"temp":4.8,"wind":8.5},{"DC":728.6,"DMC":149.3,"FFMC":93.5,"ISI":8.1,"RH":26.0,"day":"sun","impact_score":0.6457,"month":"sep","priority_rank":25,"rain":0.0,"temp":28.3,"wind":3.1}],"crews_assigned":2,"max_impact":0.8425202529705532,"observation_count":8,"sample_weather":{"DC":353.5,"DMC":27.2,"FFMC":84.4,"ISI":6.8,"RH":57.0,"day":"sun","month":"dec","rain":0.0,"temp":4.8,"wind":8.5},"x":4,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":4,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":4,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":4,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":5,"y":1},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":5,"y":2},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":5,"y":3},{"avg_impact":0.43269620056369545,"crew_details":[],"crews_assigned":0,"max_impact":0.5899909329062996,"observation_count":23,"sample_weather":{"DC":783.5,"DMC":119.0,"FFMC":92.8,"ISI":7.5,"RH":28.0,"day":"thu","month":"sep","rain":0.0,"temp":21.6,"wind":6.3},"x":5,"y":4},{"avg_impact":0.3518039934497675,"crew_details":[],"crews_assigned":0,"max_impact":0.38718982785092704,"observation_count":3,"sample_weather":{"DC":80.8,"DMC":35.8,"FFMC":91.7,"ISI":7.8,"RH":27.0,"day":"sat","month":"mar","rain":0.0,"temp":15.1,"wind":5.4},"x":5,"y":5},{"avg_impact":0.4529948051684979,"crew_details":[],"crews_assigned":0,"max_impact":0.5433463880738743,"observation_count":4,"sample_weather":{"DC":613.0,"DMC":181.3,"FFMC":91.6,"ISI":7.6,"RH":33.0,"day":"sun","month":"aug","rain":0.0,"temp":24.3,"wind":3.6},"x":5,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":5,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":5,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":5,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":6,"y":1},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":6,"y":2},{"avg_impact":0.4814166320008924,"crew_details":[{"DC":106.7,"DMC":3.0,"FFMC":79.5,"ISI":1.1,"RH":31.0,"day":"tue","impact_score":0.6698,"month":"nov","priority_rank":17,"rain":0.0,"temp":11.8,"wind":4.5},{"DC":721.4,"DMC":145.4,"FFMC":93.4,"ISI":8.1,"RH":24.0,"day":"sat","impact_score":0.6513,"month":"sep","priority_rank":21,"rain":0.0,"temp":30.2,"wind":2.7}],"crews_assigned":2,"max_impact":0.6697803545599151,"observation_count":25,"sample_weather":{"DC":106.7,"DMC":3.0,"FFMC":79.5,"ISI":1.1,"RH":31.0,"day":"tue","month":"nov","rain":0.0,"temp":11.8,"wind":4.5},"x":6,"y":3},{"avg_impact":0.3924838192861805,"crew_details":[],"crews_assigned":0,"max_impact":0.5519419421271131,"observation_count":9,"sample_weather":{"DC":16.2,"DMC":4.4,"FFMC":75.1,"ISI":1.9,"RH":77.0,"day":"tue","month":"feb","rain":0.0,"temp":5.1,"wind":5.4},"x":6,"y":4},{"avg_impact":0.42272565447812077,"crew_details":[{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":24.0,"day":"tue","impact_score":0.9101,"month":"dec","priority_rank":2,"rain":0.0,"temp":5.1,"wind":8.5},{"DC":860.6,"DMC":291.3,"FFMC":87.1,"ISI":4.0,"RH":67.0,"day":"sat","impact_score":0.6717,"month":"sep","priority_rank":16,"rain":0.0,"temp":17.0,"wind":4.9}],"crews_assigned":2,"max_impact":0.9101239415319289,"observation_count":49,"sample_weather":{"DC":349.7,"DMC":25.4,"FFMC":85.4,"ISI":2.6,"RH":24.0,"day":"tue","month":"dec","rain":0.0,"temp":5.1,"wind":8.5},"x":6,"y":5},{"avg_impact":0.46032989384363154,"crew_details":[],"crews_assigned":0,"max_impact":0.6370254530951218,"observation_count":3,"sample_weather":{"DC":643.0,"DMC":164.0,"FFMC":96.0,"ISI":14.0,"RH":30.0,"day":"sat","month":"aug","rain":0.0,"temp":30.8,"wind":4.9},"x":6,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":6,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":6,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":6,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":7,"y":1},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":7,"y":2},{"avg_impact":0.5420043191842092,"crew_details":[],"crews_assigned":0,"max_impact":0.6001217378727006,"observation_count":2,"sample_weather":{"DC":686.9,"DMC":43.7,"FFMC":90.6,"ISI":6.7,"RH":27.0,"day":"sat","month":"oct","rain":0.0,"temp":17.8,"wind":4.0},"x":7,"y":3},{"avg_impact":0.4756845202541339,"crew_details":[{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":77.0,"day":"sun","impact_score":0.7826,"month":"sep","priority_rank":9,"rain":0.0,"temp":13.8,"wind":7.6},{"DC":43.6,"DMC":3.2,"FFMC":84.6,"ISI":3.3,"RH":53.0,"day":"fri","impact_score":0.6767,"month":"feb","priority_rank":14,"rain":0.0,"temp":8.2,"wind":9.4},{"DC":849.3,"DMC":287.2,"FFMC":89.7,"ISI":6.8,"RH":45.0,"day":"thu","impact_score":0.6634,"month":"sep","priority_rank":20,"rain":0.0,"temp":19.4,"wind":3.6}],"crews_assigned":3,"max_impact":0.7825703670890268,"observation_count":45,"sample_weather":{"DC":825.1,"DMC":276.3,"FFMC":91.0,"ISI":7.1,"RH":77.0,"day":"sun","month":"sep","rain":0.0,"temp":13.8,"wind":7.6},"x":7,"y":4},{"avg_impact":0.5247436096464061,"crew_details":[{"DC":671.2,"DMC":181.1,"FFMC":96.1,"ISI":14.3,"RH":63.0,"day":"tue","impact_score":0.9593,"month":"aug","priority_rank":1,"rain":6.4,"temp":27.3,"wind":4.9},{"DC":698.6,"DMC":88.0,"FFMC":92.5,"ISI":7.1,"RH":51.0,"day":"sat","impact_score":0.6488,"month":"sep","priority_rank":23,"rain":0.0,"temp":17.8,"wind":7.2}],"crews_assigned":2,"max_impact":0.9592899181006473,"observation_count":11,"sample_weather":{"DC":671.2,"DMC":181.1,"FFMC":96.1,"ISI":14.3,"RH":63.0,"day":"tue","month":"aug","rain":6.4,"temp":27.3,"wind":4.9},"x":7,"y":5},{"avg_impact":0.5200129459981553,"crew_details":[],"crews_assigned":0,"max_impact":0.5827662677576785,"observation_count":2,"sample_weather":{"DC":430.8,"DMC":180.4,"FFMC":93.1,"ISI":11.0,"RH":28.0,"day":"tue","month":"jul","rain":0.0,"temp":26.9,"wind":5.4},"x":7,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":7,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":7,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":7,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":8,"y":1},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":8,"y":2},{"avg_impact":0.4514646791439412,"crew_details":[],"crews_assigned":0,"max_impact":0.5963750346028062,"observation_count":3,"sample_weather":{"DC":671.9,"DMC":73.4,"FFMC":84.4,"ISI":3.2,"RH":28.0,"day":"tue","month":"sep","rain":0.0,"temp":24.2,"wind":3.6},"x":8,"y":3},{"avg_impact":0.6496968288219211,"crew_details":[{"DC":819.1,"DMC":273.8,"FFMC":91.6,"ISI":7.7,"RH":44.0,"day":"sat","impact_score":0.6497,"month":"aug","priority_rank":22,"rain":0.0,"temp":21.3,"wind":4.5}],"crews_assigned":1,"max_impact":0.6496968288219211,"observation_count":1,"sample_weather":{"DC":819.1,"DMC":273.8,"FFMC":91.6,"ISI":7.7,"RH":44.0,"day":"sat","month":"aug","rain":0.0,"temp":21.3,"wind":4.5},"x":8,"y":4},{"avg_impact":0.5201653548040028,"crew_details":[],"crews_assigned":0,"max_impact":0.6327353807361491,"observation_count":4,"sample_weather":{"DC":664.2,"DMC":32.8,"FFMC":84.9,"ISI":3.0,"RH":47.0,"day":"mon","month":"oct","rain":0.0,"temp":16.7,"wind":4.9},"x":8,"y":5},{"avg_impact":0.5024567569477104,"crew_details":[{"DC":354.6,"DMC":27.8,"FFMC":84.0,"ISI":5.3,"RH":61.0,"day":"wed","impact_score":0.8661,"month":"dec","priority_rank":3,"rain":0.0,"temp":5.1,"wind":8.0},{"DC":795.9,"DMC":263.1,"FFMC":88.9,"ISI":5.2,"RH":27.0,"day":"sun","impact_score":0.7172,"month":"jul","priority_rank":10,"rain":0.0,"temp":29.3,"wind":3.6},{"DC":587.1,"DMC":130.3,"FFMC":94.9,"ISI":14.1,"RH":27.0,"day":"sun","impact_score":0.6991,"month":"aug","priority_rank":12,"rain":0.0,"temp":31.0,"wind":5.4},{"DC":715.1,"DMC":231.1,"FFMC":93.7,"ISI":8.4,"RH":31.0,"day":"sat","impact_score":0.664,"month":"aug","priority_rank":19,"rain":0.0,"temp":26.9,"wind":3.6}],"crews_assigned":4,"max_impact":0.8660582330667417,"observation_count":52,"sample_weather":{"DC":354.6,"DMC":27.8,"FFMC":84.0,"ISI":5.3,"RH":61.0,"day":"wed","month":"dec","rain":0.0,"temp":5.1,"wind":8.0},"x":8,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":8,"y":7},{"avg_impact":0.6487358418454414,"crew_details":[{"DC":635.9,"DMC":191.4,"FFMC":91.7,"ISI":7.8,"RH":36.0,"day":"wed","impact_score":0.6487,"month":"aug","priority_rank":24,"rain":0.0,"temp":26.2,"wind":4.5}],"crews_assigned":1,"max_impact":0.6487358418454414,"observation_count":1,"sample_weather":{"DC":635.9,"DMC":191.4,"FFMC":91.7,"ISI":7.8,"RH":36.0,"day":"wed","month":"aug","rain":0.0,"temp":26.2,"wind":4.5},"x":8,"y":8},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":8,"y":9},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":9,"y":1},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":9,"y":2},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":9,"y":3},{"avg_impact":0.4372096535010596,"crew_details":[],"crews_assigned":0,"max_impact":0.6026089509690224,"observation_count":4,"sample_weather":{"DC":671.9,"DMC":73.4,"FFMC":84.4,"ISI":3.2,"RH":36.0,"day":"tue","month":"sep","rain":0.0,"temp":24.3,"wind":3.1},"x":9,"y":4},{"avg_impact":0.35881316839517513,"crew_details":[],"crews_assigned":0,"max_impact":0.35881316839517513,"observation_count":2,"sample_weather":{"DC":297.7,"DMC":49.5,"FFMC":93.3,"ISI":14.0,"RH":34.0,"day":"wed","month":"jun","rain":0.0,"temp":28.0,"wind":4.5},"x":9,"y":5},{"avg_impact":0.4884313639042502,"crew_details":[],"crews_assigned":0,"max_impact":0.4884313639042502,"observation_count":1,"sample_weather":{"DC":753.8,"DMC":248.4,"FFMC":91.6,"ISI":6.3,"RH":58.0,"day":"thu","month":"aug","rain":0.0,"temp":20.5,"wind":2.7},"x":9,"y":6},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":9,"y":7},{"avg_impact":0.0,"crew_details":[],"crews_assigned":0,"max_impact":0.0,"observation_count":0,"sample_weather":null,"x":9,"y":8},{"avg_impact":0.5037389013292052,"crew_details":[],"crews_assigned":0,"max_impact":0.6026708404449638,"observation_count":6,"sample_weather":{"DC":706.7,"DMC":227.0,"FFMC":94.8,"ISI":12.0,"RH":36.0,"day":"fri","month":"aug","rain":0.0,"temp":25.0,"wind":4.0},"x":9,"y":9}],"metrics":{"constraint_satisfied":true,"eval_source":"forestfires.csv (baseline)","has_ground_truth":true,"high_impact_recall":0.125,"is_simulation_active":false,"max_per_cell_constraint":4,"max_per_cell_observed":4,"ndcg_at_25":0.0595,"rubric_total_score":18.32,"spearman_corr":0.1923,"target_crews":25,"total_crews_selected":25,"total_eval_rows":517,"unique_cells_covered":13},"simulation":null};
+
+/**
  * DONEZO x WILDFIRE 3D TACTICAL COMMAND CENTER
  * Unified Frontend Application & 3D Spatial Grid Engine
  */
@@ -508,28 +513,34 @@
   // =========================================================================
   // Fetch & Synchronize State with Server
   // =========================================================================
-  async function fetchGridData() {
+    async function fetchGridData() {
     try {
       const res = await fetch('/api/grid');
-      if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
-
-      currentGridData = data.grid || [];
-      currentCrews = data.crews || [];
-      currentMetrics = data.metrics || {};
-
-      render3DGrid();
-      renderPortfolioTable();
-      renderMatrixGrid();
-      updateMetricsHUD();
-
-      if (data.simulation) {
-        if (hudStatusBadge) hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Scenario: <b>${data.simulation.preset}</b>`;
-      } else {
-        if (hudStatusBadge) hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Status: <b>Optimal Response Active</b>`;
-      }
+      applyPayload(data);
     } catch (err) {
-      console.error("Failed to load grid data:", err);
+      console.warn('Backend API unavailable, loading embedded baseline dataset:', err);
+      if (typeof EMBEDDED_BASELINE !== 'undefined') {
+        applyPayload(JSON.parse(JSON.stringify(EMBEDDED_BASELINE)));
+      }
+    }
+  }
+
+  function applyPayload(data) {
+    currentGridData = data.grid || [];
+    currentCrews = data.crews || [];
+    currentMetrics = data.metrics || {};
+
+    render3DGrid();
+    renderPortfolioTable();
+    renderMatrixGrid();
+    updateMetricsHUD();
+
+    if (data.simulation) {
+      if (hudStatusBadge) hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Scenario: <b>${data.simulation.preset}</b>`;
+    } else {
+      if (hudStatusBadge) hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Status: <b>Optimal Response Active</b>`;
     }
   }
 
@@ -749,7 +760,7 @@
     });
   }
 
-  async function executeSimulationPayload(payload) {
+    async function executeSimulationPayload(payload) {
     const btn = document.getElementById('btn-run-sim');
     try {
       if (btn) {
@@ -765,21 +776,10 @@
 
       if (!res.ok) throw new Error(`Simulation failed: ${res.statusText}`);
       const data = await res.json();
-
-      currentGridData = data.grid || [];
-      currentCrews = data.crews || [];
-      currentMetrics = data.metrics || {};
-
-      render3DGrid();
-      renderPortfolioTable();
-      renderMatrixGrid();
-      updateMetricsHUD();
-
-      if (hudStatusBadge) {
-        hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Scenario: <b>${payload.scenario_preset}</b>`;
-      }
+      applyPayload(data);
     } catch (err) {
-      alert(`Simulation error: ${err.message}`);
+      console.warn('Backend simulate endpoint offline, executing client-side physics simulation:', err);
+      runClientSideSimulation(payload.temp_delta, payload.rh_delta, payload.wind_delta, payload.scenario_preset);
     } finally {
       if (btn) {
         btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span>Simulate &amp; Rebalance Crews</span>`;
@@ -788,26 +788,84 @@
     }
   }
 
-  window.resetToBaseline = async function () {
+  function runClientSideSimulation(tempDelta, rhDelta, windDelta, presetName) {
+    if (typeof EMBEDDED_BASELINE === 'undefined') return;
+    const base = JSON.parse(JSON.stringify(EMBEDDED_BASELINE));
+    const factor = (1 + (tempDelta * 0.04)) * (1 - (rhDelta * 0.02)) * (1 + (windDelta * 0.03));
+    
+    const simGrid = base.grid.map(c => {
+      const rawImpact = (c.avg_impact || 0.1) * Math.max(0.15, factor);
+      const impact = parseFloat(Math.min(1.0, Math.max(0.01, rawImpact)).toFixed(4));
+      return {
+        ...c,
+        avg_temp: parseFloat(Math.max(0, c.avg_temp + tempDelta).toFixed(1)),
+        avg_rh: parseFloat(Math.max(10, Math.min(100, c.avg_rh + rhDelta)).toFixed(1)),
+        avg_wind: parseFloat(Math.max(0, c.avg_wind + windDelta).toFixed(1)),
+        avg_impact: impact,
+        max_impact: impact,
+        crews_assigned: 0
+      };
+    });
+
+    const activeCells = simGrid.filter(c => c.observation_count > 0).sort((a, b) => b.avg_impact - a.avg_impact);
+    let rem = 25;
+    const crews = [];
+    let rank = 1;
+
+    for (let round = 0; round < 4 && rem > 0; round++) {
+      for (const cell of activeCells) {
+        if (rem <= 0) break;
+        if (cell.crews_assigned < 4) {
+          cell.crews_assigned += 1;
+          rem -= 1;
+          crews.push({
+            rank: rank++,
+            impact_score: cell.avg_impact,
+            x: cell.x,
+            y: cell.y,
+            month: 'aug',
+            day: 'fri',
+            temp: cell.avg_temp,
+            wind: cell.avg_wind,
+            rh: cell.avg_rh,
+            ffmc: cell.avg_ffmc,
+            isi: parseFloat((cell.avg_wind * 0.4).toFixed(1)),
+            quota_status: `${cell.crews_assigned}/4 In Sector`
+          });
+        }
+      }
+    }
+
+    applyPayload({
+      grid: simGrid,
+      crews: crews,
+      metrics: {
+        ...base.metrics,
+        total_crews_selected: 25 - rem,
+        unique_cells_covered: simGrid.filter(c => c.crews_assigned > 0).length,
+        max_per_cell_observed: Math.max(...simGrid.map(c => c.crews_assigned)),
+        is_simulation_active: true
+      },
+      simulation: {
+        preset: presetName,
+        temp_delta: tempDelta,
+        rh_delta: rhDelta,
+        wind_delta: windDelta
+      }
+    });
+  }
+
+    window.resetToBaseline = async function () {
     try {
       const res = await fetch('/api/reset', { method: 'POST' });
       if (!res.ok) throw new Error("Reset failed");
       const data = await res.json();
-
-      currentGridData = data.grid || [];
-      currentCrews = data.crews || [];
-      currentMetrics = data.metrics || {};
-
-      render3DGrid();
-      renderPortfolioTable();
-      renderMatrixGrid();
-      updateMetricsHUD();
-
-      if (hudStatusBadge) {
-        hudStatusBadge.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>Status: <b>Optimal Baseline Active</b>`;
-      }
+      applyPayload(data);
     } catch (e) {
-      alert(`Reset error: ${e.message}`);
+      console.warn('Backend reset offline, restoring baseline from embedded cache');
+      if (typeof EMBEDDED_BASELINE !== 'undefined') {
+        applyPayload(JSON.parse(JSON.stringify(EMBEDDED_BASELINE)));
+      }
     }
   };
 

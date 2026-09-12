@@ -275,6 +275,7 @@ def build_grid_response_payload():
 # ==========================================
 
 @app.route("/")
+@app.route("/index.html")
 def index():
     """Serve main interactive 3D dashboard."""
     return send_from_directory(app.static_folder, "index.html")
@@ -282,39 +283,57 @@ def index():
 
 @app.route("/donezo")
 @app.route("/dashboard")
+@app.route("/donezo.html")
 def donezo_dashboard():
     """Serve replicated Donezo productivity and task dashboard."""
     return send_from_directory(app.static_folder, "index.html")
 
 
 @app.route("/portfolio")
+@app.route("/portfolio.html")
 def portfolio_page():
     """Serve dedicated 25-crew response portfolio page."""
     return send_from_directory(app.static_folder, "portfolio.html")
 
 
 @app.route("/matrix")
+@app.route("/matrix.html")
 def matrix_page():
     """Serve dedicated 9x9 spatial matrix and heatmap page."""
     return send_from_directory(app.static_folder, "matrix.html")
 
 
 @app.route("/simulation")
+@app.route("/simulation.html")
 def simulation_page():
     """Serve dedicated what-if weather simulation sandbox page."""
     return send_from_directory(app.static_folder, "simulation.html")
 
 
 @app.route("/analytics")
+@app.route("/analytics.html")
 def analytics_page():
     """Serve dedicated ML model evaluation and benchmark analytics page."""
     return send_from_directory(app.static_folder, "analytics.html")
 
 
 @app.route("/assets")
+@app.route("/assets.html")
 def assets_page():
     """Serve modular asset catalog and visual customization page."""
     return send_from_directory(app.static_folder, "assets.html")
+
+
+@app.route("/css/<path:filename>")
+def serve_css(filename):
+    """Serve CSS assets directly."""
+    return send_from_directory(os.path.join(app.static_folder, "css"), filename)
+
+
+@app.route("/js/<path:filename>")
+def serve_js(filename):
+    """Serve JS assets directly."""
+    return send_from_directory(os.path.join(app.static_folder, "js"), filename)
 
 
 
