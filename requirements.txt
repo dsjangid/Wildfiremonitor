@@ -1,0 +1,13 @@
+# Core Scientific & Machine Learning
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+
+# Web Application & REST API
+flask>=2.3.0
+werkzeug>=2.3.0
+
+# PDF Report Generation & Evaluation Testing
+reportlab>=4.0.0
+pytest>=8.0.0

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="droneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ffcc"/>
+      <stop offset="100%" stop-color="#0077ff"/>
+    </linearGradient>
+  </defs>
+  <!-- Central Pod -->
+  <circle cx="32" cy="32" r="10" fill="#0f172a" stroke="url(#droneGrad)" stroke-width="2.5"/>
+  <circle cx="32" cy="32" r="4" fill="#00ffcc"/>
+  <!-- Rotor arms -->
+  <line x1="16" y1="16" x2="48" y2="48" stroke="url(#droneGrad)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="48" y1="16" x2="16" y2="48" stroke="url(#droneGrad)" stroke-width="3" stroke-linecap="round"/>
+  <!-- 4 Rotors -->
+  <circle cx="14" cy="14" r="8" fill="none" stroke="#00ffcc" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <circle cx="50" cy="14" r="8" fill="none" stroke="#00ffcc" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <circle cx="14" cy="50" r="8" fill="none" stroke="#00ffcc" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <circle cx="50" cy="50" r="8" fill="none" stroke="#00ffcc" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <circle cx="14" cy="14" r="2.5" fill="#ffffff"/>
+  <circle cx="50" cy="14" r="2.5" fill="#ffffff"/>
+  <circle cx="14" cy="50" r="2.5" fill="#ffffff"/>
+  <circle cx="50" cy="50" r="2.5" fill="#ffffff"/>
+</svg>

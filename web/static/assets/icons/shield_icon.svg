@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="constraintGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+  </defs>
+  <!-- Quota containment shield -->
+  <path d="M32 6 L52 14 C52 38 32 56 32 56 C32 56 12 38 12 14 Z" fill="url(#constraintGrad)" stroke="#34d399" stroke-width="2.5" filter="drop-shadow(0 0 8px rgba(16,185,129,0.5))"/>
+  <!-- Checkmark or "4" representation -->
+  <path d="M22 32 L29 39 L43 23" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
