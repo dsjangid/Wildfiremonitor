@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Donezo — Dashboard</title>
-  <link rel="stylesheet" href="/static/css/donezo.css" />
-  <!-- Feather Icons for crisp vector glyphs -->
-  <script src="https://unpkg.com/feather-icons"></script>
+  <title>Donezo — Wildfire Response 3D Tactical Console</title>
+  
+  <!-- Modern Clean Fonts & Styles -->
+  <link rel="stylesheet" href="/static/css/unified.css" />
+  
+  <!-- Three.js & OrbitControls for 3D Terrain Visualization -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
 <body>
 
-  <!-- Main Dashboard App Frame -->
+  <!-- Master App Frame (Donezo Rounded Clean Shell) -->
   <div class="dashboard-app-frame">
 
     <!-- ==========================================
@@ -19,121 +23,121 @@
     <aside class="sidebar">
       <div>
         <!-- Brand Logo -->
-        <div class="brand-container">
-          <!-- Donezo Custom Clover/Loop Logo -->
+        <div class="brand-container" onclick="location.reload()">
           <svg class="brand-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="36" height="36" rx="10" fill="#E8F8F0"/>
             <path d="M18 10C14.6863 10 12 12.6863 12 16C12 18.5 13.5 20.5 15.5 21.5L18 24L20.5 21.5C22.5 20.5 24 18.5 24 16C24 12.6863 21.3137 10 18 10Z" stroke="#123D2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="18" cy="15.5" r="2.5" fill="#45C486"/>
             <path d="M10 18C10 21.3137 12.6863 24 16 24C18.5 24 20.5 22.5 21.5 20.5" stroke="#123D2B" stroke-width="2.2" stroke-linecap="round"/>
           </svg>
-          <span class="brand-title">Donezo</span>
+          <div>
+            <div class="brand-title">WildfireOps</div>
+            <div class="brand-subtitle">Donezo Tactical Engine</div>
+          </div>
         </div>
 
-        <!-- Menu Section -->
-        <div class="nav-section-title">Menu</div>
+        <!-- Command Section -->
+        <div class="nav-section-title">Command</div>
         <ul class="nav-list">
-          <li class="nav-item active">
-            <a href="#">
+          <li class="nav-item active" id="nav-item-3d">
+            <a onclick="scrollToSection('panel-3d-stage')">
               <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
                 <rect x="14" y="3" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
                 <rect x="14" y="14" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
                 <rect x="3" y="14" width="7" height="7" rx="1.5" fill="#123D2B"></rect>
               </svg>
-              <span>Dashboard</span>
+              <span>3D Terrain Grid</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 11l3 3L22 4"></path>
-                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-              </svg>
-              <span>Tasks</span>
-              <span class="badge-pill">12+</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span>Calendar</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#">
-              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"></line>
-                <line x1="12" y1="20" x2="12" y2="4"></line>
-                <line x1="6" y1="20" x2="6" y2="14"></line>
-              </svg>
-              <span>Analytics</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#">
+            <a onclick="scrollToSection('panel-portfolio')">
               <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
-              <span>Team</span>
+              <span>25 Crews Portfolio</span>
+              <span class="badge-pill" id="sidebar-crew-count">25</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="scrollToSection('panel-matrix')">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="3" y1="15" x2="21" y2="15"></line>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+                <line x1="15" y1="3" x2="15" y2="21"></line>
+              </svg>
+              <span>9×9 Heat Matrix</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="scrollToSection('panel-weather-sim')">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+              </svg>
+              <span>Weather Sandbox</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="scrollToSection('panel-uploader')">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 16 12 12 8 16"></polyline>
+                <line x1="12" y1="12" x2="12" y2="21"></line>
+                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+              </svg>
+              <span>Dataset Evaluation</span>
             </a>
           </li>
         </ul>
 
-        <!-- General Section -->
-        <div class="nav-section-title">General</div>
+        <!-- Export & Reset Section -->
+        <div class="nav-section-title">System &amp; Export</div>
         <ul class="nav-list">
           <li class="nav-item">
-            <a href="#">
+            <a href="/api/download/portfolio" target="_blank" download="selected_portfolio.csv">
               <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              <span>Settings</span>
+              <span>portfolio.csv</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#">
+            <a href="/api/download/predictions" target="_blank" download="predictions.csv">
               <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
               </svg>
-              <span>Help</span>
+              <span>predictions.csv</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#">
+            <a id="btn-sidebar-reset" onclick="resetToBaseline()" title="Reset back to baseline data">
               <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                <polyline points="16 17 21 12 16 7"></polyline>
-                <line x1="21" y1="12" x2="9" y2="12"></line>
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
               </svg>
-              <span>Logout</span>
+              <span>Reset Baseline</span>
             </a>
           </li>
         </ul>
       </div>
 
-      <!-- Bottom Promo Card -->
+      <!-- Bottom Card (Donezo Matroid Status) -->
       <div class="sidebar-promo-card">
         <div class="promo-badge-icon">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           </svg>
         </div>
-        <div class="promo-title">Download our<br/>Mobile App</div>
-        <div class="promo-desc">Get easy in another way</div>
-        <button class="btn-promo-download" onclick="alert('Donezo Mobile App download link sent!')">Download</button>
+        <div class="promo-title">Matroid Optimizer<br/>Constrained Engine</div>
+        <div class="promo-desc">Strictly ≤ 4 crews per (X, Y) cell. Exactly 25 dispatches.</div>
+        <button class="btn-promo-action" onclick="resetToBaseline()">Reset Baseline</button>
       </div>
     </aside>
 
@@ -150,64 +154,68 @@
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <input type="text" id="global-search" class="search-input" placeholder="Search task" />
+          <input type="text" id="global-search" class="search-input" placeholder="Search sector (e.g. X:8, Y:6), rank, or weather index..." />
           <span class="search-shortcut-badge">⌘F</span>
         </div>
 
         <!-- Top Right Actions & Profile -->
         <div class="topbar-actions">
-          <button class="icon-btn-round" title="Messages">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </button>
-          <button class="icon-btn-round" title="Notifications">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-          </button>
+          <div class="system-status-pill">
+            <span class="status-dot-live"></span>
+            <span id="badge-model">Hurdle Ensemble Online</span>
+          </div>
 
           <!-- User Profile -->
           <div class="user-profile-pill">
-            <img class="user-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Totok Michael" />
+            <img class="user-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Incident Commander" />
             <div class="user-info-text">
-              <span class="user-name">Totok Michael</span>
-              <span class="user-email">tmichael20@mail.com</span>
+              <span class="user-name">Incident Commander</span>
+              <span class="user-email" id="eval-source-label">forestfires.csv</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- HEADER TITLE & ACTION BUTTONS -->
+      <!-- HEADER TITLE & ACTIONS -->
       <div class="dashboard-header">
         <div class="header-title-group">
-          <h1>Dashboard</h1>
-          <p class="header-subtitle">Plan, prioritize, and accomplish your tasks with ease.</p>
+          <h1>Wildfire Response Prioritization</h1>
+          <p class="header-subtitle">Autonomous crew dispatch, 9×9 spatial risk mapping, and constrained matroid optimization.</p>
         </div>
         <div class="header-btn-group">
-          <button class="btn-primary-dark" id="btnAddProject" onclick="openAddProjectModal()">
+          <button class="btn-primary-dark" onclick="scrollToSection('panel-weather-sim')">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
             </svg>
-            <span>Add Project</span>
+            <span>What-If Simulate</span>
           </button>
-          <button class="btn-secondary-white" onclick="triggerImportData()">
-            <span>Import Data</span>
+          <button class="btn-secondary-white" onclick="document.getElementById('csv-file-input').click()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 16 12 12 8 16"></polyline>
+              <line x1="12" y1="12" x2="12" y2="21"></line>
+              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+            </svg>
+            <span>Import CSV</span>
           </button>
+          <a href="/api/download/portfolio" class="btn-secondary-white" download="selected_portfolio.csv">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Export Portfolio</span>
+          </a>
         </div>
       </div>
 
       <!-- ==========================================
-           KPI 4 METRICS CARDS
+           4 TOP KPI METRIC CARDS (DONEZO STYLE)
            ========================================== -->
       <div class="kpi-grid">
-        <!-- 1. Total Projects (Dark Green Card) -->
+        <!-- 1. Active Crews Deployed (Dark Forest Green Card) -->
         <div class="kpi-card dark-card">
           <div class="kpi-card-header">
-            <span class="kpi-label">Total Projects</span>
+            <span class="kpi-label">Active Crews Deployed</span>
             <div class="kpi-arrow-circle">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -215,17 +223,17 @@
               </svg>
             </div>
           </div>
-          <div class="kpi-value" id="kpi-total">24</div>
+          <div class="kpi-value" id="kpi-crews-deployed">25 / 25</div>
           <div class="kpi-footer-tag">
-            <span class="kpi-badge-num">5▲</span>
-            <span>Increased from last month</span>
+            <span class="kpi-badge-num">100%</span>
+            <span>Target Portfolio: Exactly 25</span>
           </div>
         </div>
 
-        <!-- 2. Ended Projects -->
+        <!-- 2. Max In Cell Constraint -->
         <div class="kpi-card light-card">
           <div class="kpi-card-header">
-            <span class="kpi-label">Ended Projects</span>
+            <span class="kpi-label">Max In Sector</span>
             <div class="kpi-arrow-circle">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -233,17 +241,17 @@
               </svg>
             </div>
           </div>
-          <div class="kpi-value" id="kpi-ended">10</div>
+          <div class="kpi-value" id="kpi-max-per-cell">4 / 4</div>
           <div class="kpi-footer-tag">
-            <span class="kpi-badge-num">6▲</span>
-            <span>Increased from last month</span>
+            <span class="kpi-badge-num" id="kpi-constraint-badge">OK</span>
+            <span>Strict Limit: &le; 4 per cell</span>
           </div>
         </div>
 
-        <!-- 3. Running Projects -->
+        <!-- 3. Unique Sectors Covered -->
         <div class="kpi-card light-card">
           <div class="kpi-card-header">
-            <span class="kpi-label">Running Projects</span>
+            <span class="kpi-label">Unique Sectors Covered</span>
             <div class="kpi-arrow-circle">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -251,17 +259,17 @@
               </svg>
             </div>
           </div>
-          <div class="kpi-value" id="kpi-running">12</div>
+          <div class="kpi-value" id="kpi-unique-sectors">13 Sectors</div>
           <div class="kpi-footer-tag">
-            <span class="kpi-badge-num">2▲</span>
-            <span>Increased from last month</span>
+            <span class="kpi-badge-num">9&times;9</span>
+            <span>Spatial Spread Across Park</span>
           </div>
         </div>
 
-        <!-- 4. Pending Project -->
+        <!-- 4. Candidate Incidents Evaluated -->
         <div class="kpi-card light-card">
           <div class="kpi-card-header">
-            <span class="kpi-label">Pending Project</span>
+            <span class="kpi-label">Candidate Incidents</span>
             <div class="kpi-arrow-circle">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
@@ -269,9 +277,9 @@
               </svg>
             </div>
           </div>
-          <div class="kpi-value" id="kpi-pending">2</div>
+          <div class="kpi-value" id="kpi-total-eval-rows">517 Fires</div>
           <div class="kpi-footer-tag">
-            <span style="color: var(--text-secondary);">On Discuss</span>
+            <span style="color: var(--primary-mint); font-weight: 700;" id="kpi-dataset-tag">forestfires.csv</span>
           </div>
         </div>
       </div>
@@ -282,330 +290,282 @@
       <div class="dashboard-content-grid">
 
         <!-- ==============================
-             LEFT COLUMN
+             LEFT COLUMN (3D STAGE & PORTFOLIO)
              ============================== -->
         <div class="grid-column">
-          <!-- Project Analytics (Bar Chart) -->
-          <div class="panel-card">
+          
+          <!-- 3D Terrain Grid Stage -->
+          <div class="panel-card" id="panel-3d-stage">
             <div class="panel-header">
-              <span class="panel-title">Project Analytics</span>
-            </div>
-
-            <!-- 7 Bar Chart -->
-            <div class="analytics-chart-container">
-              <!-- S -->
-              <div class="chart-bar-group">
-                <div class="chart-bar-slot">
-                  <div class="chart-bar-pill bar-striped" style="height: 60px;" title="Sunday: 45%"></div>
-                </div>
-                <span class="chart-day-label">S</span>
-              </div>
-
-              <!-- M -->
-              <div class="chart-bar-group">
-                <div class="chart-bar-slot">
-                  <div class="chart-bar-pill bar-solid-dark" style="height: 95px;" title="Monday: 85%"></div>
-                </div>
-                <span class="chart-day-label">M</span>
-              </div>
-
-              <!-- T (with 74% Tooltip) -->
-              <div class="chart-bar-group">
-                <div class="chart-bar-slot">
-                  <div class="chart-tooltip-bubble">74%</div>
-                  <div class="chart-bar-pill bar-solid-mint" style="height: 80px;" title="Tuesday: 74%"></div>
-                </div>
-                <span class="chart-day-label">T</span>
-              </div>
-
-              <!-- W (Highest) -->
-              <div class="chart-bar-group">
-                <div class="chart-bar-slot">
-                  <div class="chart-bar-pill bar-solid-dark" style="height: 110px;" title="Wednesday: 98%"></div>
-                </div>
-                <span class="chart-day-label">W</span>
-              </div>
-
-              <!-- T -->
-              <div class="chart-bar-group">
-                <div class="chart-bar-slot">
-                  <div class="chart-bar-pill bar-striped" style="height: 70px;" title="Thursday: 55%"></div>
-                </div>
-                <span class="chart-day-label">T</span>
-              </div>
-
-              <!-- F -->
-              <div class="chart-bar-group">
-                <div class="chart-bar-slot">
-                  <div class="chart-bar-pill bar-striped" style="height: 55px;" title="Friday: 40%"></div>
-                </div>
-                <span class="chart-day-label">F</span>
-              </div>
-
-              <!-- S -->
-              <div class="chart-bar-group">
-                <div class="chart-bar-slot">
-                  <div class="chart-bar-pill bar-striped" style="height: 75px;" title="Saturday: 60%"></div>
-                </div>
-                <span class="chart-day-label">S</span>
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                3D Montesinho Terrain Grid (9&times;9)
+              </span>
+              <div class="view-btn-group">
+                <button class="view-btn active" id="view-iso">3D Iso</button>
+                <button class="view-btn" id="view-top">Top 2D</button>
+                <button class="view-btn" id="view-low">Horizon</button>
+                <button class="view-btn" id="view-rotate">Rotate</button>
               </div>
             </div>
-          </div>
 
-          <!-- Team Collaboration -->
-          <div class="panel-card">
-            <div class="panel-header">
-              <span class="panel-title">Team Collaboration</span>
-              <button class="btn-pill-small" onclick="openAddMemberModal()">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                <span>Add Member</span>
-              </button>
-            </div>
-
-            <div class="team-member-list" id="teamMemberList">
-              <!-- 1. Alexandra Deff -->
-              <div class="team-member-item">
-                <div class="member-info-left">
-                  <img class="member-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" alt="Alexandra Deff" />
-                  <div class="member-details-text">
-                    <span class="member-name">Alexandra Deff</span>
-                    <span class="member-task">Working on <strong>Github Project Repository</strong></span>
-                  </div>
-                </div>
-                <span class="status-badge-pill status-completed">Completed</span>
-              </div>
-
-              <!-- 2. Edwin Adenike -->
-              <div class="team-member-item">
-                <div class="member-info-left">
-                  <img class="member-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Edwin Adenike" />
-                  <div class="member-details-text">
-                    <span class="member-name">Edwin Adenike</span>
-                    <span class="member-task">Working on <strong>Integrate User Authentication System</strong></span>
-                  </div>
-                </div>
-                <span class="status-badge-pill status-in-progress">In Progress</span>
-              </div>
-
-              <!-- 3. Isaac Oluwatemilorun -->
-              <div class="team-member-item">
-                <div class="member-info-left">
-                  <img class="member-avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80" alt="Isaac Oluwatemilorun" />
-                  <div class="member-details-text">
-                    <span class="member-name">Isaac Oluwatemilorun</span>
-                    <span class="member-task">Working on <strong>Develop Search and Filter Functionality</strong></span>
-                  </div>
-                </div>
-                <span class="status-badge-pill status-pending">Pending</span>
-              </div>
-
-              <!-- 4. David Oshodi -->
-              <div class="team-member-item">
-                <div class="member-info-left">
-                  <img class="member-avatar" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&auto=format&fit=crop&q=80" alt="David Oshodi" />
-                  <div class="member-details-text">
-                    <span class="member-name">David Oshodi</span>
-                    <span class="member-task">Working on <strong>Responsive Layout for Homepage</strong></span>
-                  </div>
-                </div>
-                <span class="status-badge-pill status-in-progress">In Progress</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ==============================
-             MIDDLE COLUMN
-             ============================== -->
-        <div class="grid-column">
-          <!-- Reminders Card -->
-          <div class="panel-card">
-            <div class="panel-header">
-              <span class="panel-title">Reminders</span>
-            </div>
-            <div class="reminder-content-box">
-              <div class="reminder-meeting-title">Meeting with Arc<br/>Company</div>
-              <div class="reminder-time-label">Time : 02.00 pm - 04.00 pm</div>
-              <button class="btn-start-meeting" onclick="startMeetingSession()">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                </svg>
-                <span>Start Meeting</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Project Progress (Gauge Semi-circle) -->
-          <div class="panel-card">
-            <div class="panel-header">
-              <span class="panel-title">Project Progress</span>
-            </div>
-
-            <div class="progress-gauge-wrapper">
-              <div class="gauge-svg-container">
-                <!-- SVG Semi-Circle Donut Arc -->
-                <svg viewBox="0 0 200 110" width="200" height="110">
-                  <defs>
-                    <!-- Pattern for Pending diagonal lines -->
-                    <pattern id="gaugeHatch" width="6" height="6" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-                      <line x1="0" y1="0" x2="0" y2="6" stroke="#94A3B8" stroke-width="2" />
-                    </pattern>
-                  </defs>
-
-                  <!-- Background / Pending Hatched segment (Right side) -->
-                  <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="url(#gaugeHatch)" stroke-width="22" stroke-linecap="round" />
-                  
-                  <!-- In Progress segment (Dark Forest Green) -->
-                  <path d="M 20 100 A 80 80 0 0 1 155 45" fill="none" stroke="#123D2B" stroke-width="22" stroke-linecap="round" />
-
-                  <!-- Completed segment (Mint Green) -->
-                  <path d="M 20 100 A 80 80 0 0 1 85 24" fill="none" stroke="#45C486" stroke-width="22" stroke-linecap="round" />
-                </svg>
-
-                <div class="gauge-center-text">
-                  <div class="gauge-percent-num">41%</div>
-                  <div class="gauge-caption">Project Ended</div>
-                </div>
+            <!-- Canvas Viewport -->
+            <div class="canvas-wrapper" id="canvas-wrapper">
+              <canvas id="webgl-canvas"></canvas>
+              
+              <!-- HUD info -->
+              <div class="hud-overlay">
+                <div class="hud-tag">📍 Sector Grid: <b>9&times;9 Montesinho Park</b></div>
+                <div class="hud-tag" id="hud-status-badge">⚡ Status: <b>Optimal Response Active</b></div>
               </div>
 
               <!-- Legend -->
-              <div class="gauge-legend-row">
-                <div class="legend-item">
-                  <span class="legend-dot completed"></span>
-                  <span>Completed</span>
-                </div>
-                <div class="legend-item">
-                  <span class="legend-dot in-progress"></span>
-                  <span>In Progress</span>
-                </div>
-                <div class="legend-item">
-                  <span class="legend-dot pending"></span>
-                  <span>Pending</span>
+              <div class="grid-legend">
+                <div style="font-weight: 700;">Fire Risk Index</div>
+                <div class="legend-bar"></div>
+                <div style="display: flex; justify-content: space-between; font-size: 9px; opacity: 0.8;">
+                  <span>0.0 (Low)</span>
+                  <span>1.0 (Extreme)</span>
                 </div>
               </div>
+
+              <!-- Raycaster Tooltip -->
+              <div class="cell-floating-tooltip" id="cell-tooltip"></div>
             </div>
           </div>
+
+          <!-- Response Portfolio Table (25 Dispatched Crews) -->
+          <div class="panel-card" id="panel-portfolio">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                Selected Response Portfolio (25 Crews)
+              </span>
+              <a href="/api/download/portfolio" class="btn-pill-small" download="selected_portfolio.csv">
+                <span>Export CSV</span>
+              </a>
+            </div>
+
+            <div class="table-container-scroll">
+              <table class="portfolio-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Impact Score</th>
+                    <th>Sector (X, Y)</th>
+                    <th>Month / Day</th>
+                    <th>Temp</th>
+                    <th>Wind</th>
+                    <th>RH</th>
+                    <th>FFMC</th>
+                    <th>ISI</th>
+                    <th>Quota</th>
+                  </tr>
+                </thead>
+                <tbody id="portfolio-table-body">
+                  <tr><td colspan="10" style="text-align: center; color: var(--text-muted);">Loading response portfolio...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
 
         <!-- ==============================
-             RIGHT COLUMN
+             MIDDLE COLUMN (WEATHER SIM & 9x9 MATRIX)
              ============================== -->
         <div class="grid-column">
-          <!-- Projects List -->
-          <div class="panel-card">
+          
+          <!-- What-If Fire Weather Sandbox -->
+          <div class="panel-card" id="panel-weather-sim">
             <div class="panel-header">
-              <span class="panel-title">Project</span>
-              <button class="btn-pill-small" onclick="openAddProjectModal()">
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="5" x2="12" y2="19"></line>
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                </svg>
-                <span>New</span>
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+                What-If Weather Simulator
+              </span>
+            </div>
+
+            <!-- Preset Scenarios -->
+            <div class="sim-preset-row">
+              <button class="sim-preset-btn" id="preset-heatwave">
+                <span>🔥</span>
+                <span>Heatwave</span>
+              </button>
+              <button class="sim-preset-btn" id="preset-gale">
+                <span>💨</span>
+                <span>Gale Wind</span>
+              </button>
+              <button class="sim-preset-btn" id="preset-rain">
+                <span>🌧️</span>
+                <span>Rain</span>
+              </button>
+              <button class="sim-preset-btn" id="preset-normal">
+                <span>🌲</span>
+                <span>Baseline</span>
               </button>
             </div>
 
-            <div class="project-item-list" id="projectItemList">
-              <!-- 1. Develop API Endpoints -->
-              <div class="project-item">
-                <div class="project-icon-badge" style="background: #eef2ff;">
-                  <!-- Blue dual slash symbol -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="3" stroke-linecap="round">
-                    <line x1="9" y1="19" x2="15" y2="5"></line>
-                    <line x1="4" y1="12" x2="6" y2="12"></line>
-                    <line x1="18" y1="12" x2="20" y2="12"></line>
-                  </svg>
+            <!-- Sliders -->
+            <div class="sim-slider-box">
+              <div class="slider-unit-row">
+                <div class="slider-label-flex">
+                  <span>Temperature Shift:</span>
+                  <span class="slider-val-tag" id="val-temp-delta">+0.0°C</span>
                 </div>
-                <div class="project-text-block">
-                  <span class="project-name">Develop API Endpoints</span>
-                  <span class="project-due-date">Due date: Nov 26, 2024</span>
-                </div>
+                <input type="range" id="slider-temp" min="-15" max="15" step="1" value="0" />
               </div>
 
-              <!-- 2. Onboarding Flow -->
-              <div class="project-item">
-                <div class="project-icon-badge" style="background: #e6fffa;">
-                  <!-- Teal flow symbol -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
-                    <path d="M12 6a6 6 0 0 0-6 6"></path>
-                  </svg>
+              <div class="slider-unit-row">
+                <div class="slider-label-flex">
+                  <span>Relative Humidity Shift:</span>
+                  <span class="slider-val-tag" id="val-rh-delta">+0%</span>
                 </div>
-                <div class="project-text-block">
-                  <span class="project-name">Onboarding Flow</span>
-                  <span class="project-due-date">Due date: Nov 28, 2024</span>
-                </div>
+                <input type="range" id="slider-rh" min="-30" max="30" step="1" value="0" />
               </div>
 
-              <!-- 3. Build Dashboard -->
-              <div class="project-item">
-                <div class="project-icon-badge" style="background: #f0fdf4;">
-                  <!-- Green clover symbol -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round">
-                    <circle cx="12" cy="7" r="3" fill="#86efac"></circle>
-                    <circle cx="7" cy="14" r="3" fill="#fde047"></circle>
-                    <circle cx="17" cy="14" r="3" fill="#86efac"></circle>
-                  </svg>
+              <div class="slider-unit-row">
+                <div class="slider-label-flex">
+                  <span>Wind Speed Shift:</span>
+                  <span class="slider-val-tag" id="val-wind-delta">+0.0 km/h</span>
                 </div>
-                <div class="project-text-block">
-                  <span class="project-name">Build Dashboard</span>
-                  <span class="project-due-date">Due date: Nov 30, 2024</span>
-                </div>
+                <input type="range" id="slider-wind" min="-10" max="25" step="1" value="0" />
               </div>
+            </div>
 
-              <!-- 4. Optimize Page Load -->
-              <div class="project-item">
-                <div class="project-icon-badge" style="background: #fffbeb;">
-                  <!-- Orange speed arc symbol -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round">
-                    <path d="M12 3a9 9 0 0 0-9 9h3a6 6 0 0 1 6-6V3z" fill="#f59e0b"></path>
-                    <path d="M12 21a9 9 0 0 0 9-9h-3a6 6 0 0 1-6 6v3z"></path>
-                  </svg>
-                </div>
-                <div class="project-text-block">
-                  <span class="project-name">Optimize Page Load</span>
-                  <span class="project-due-date">Due date: Dec 5, 2024</span>
-                </div>
+            <button class="btn-simulate-rebalance" id="btn-run-sim">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span>Simulate &amp; Rebalance Crews</span>
+            </button>
+          </div>
+
+          <!-- 9x9 Spatial Matrix -->
+          <div class="panel-card" id="panel-matrix">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                9&times;9 Coordinate Heat Matrix
+              </span>
+              <span style="font-size: 11px; color: var(--text-muted);">Y: 9&darr;1, X: 1&rarr;9</span>
+            </div>
+
+            <div class="matrix-grid-9x9" id="matrix-grid">
+              <!-- Dynamically populated 81 cells -->
+            </div>
+          </div>
+
+          <!-- Model Performance Rubric -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-title">Model Prioritization Accuracy</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center;">
+              <div style="background: var(--bg-subtle); padding: 10px 4px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10px; color: var(--text-muted); font-weight: 700;">NDCG@25</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary-dark);" id="metric-ndcg">0.2288</div>
+                <div style="font-size: 9.5px; color: var(--primary-mint); font-weight: 700;">+106% vs Trees</div>
               </div>
-
-              <!-- 5. Cross-Browser Testing -->
-              <div class="project-item">
-                <div class="project-icon-badge" style="background: #fdf2f8;">
-                  <!-- Purple/pink bubbles symbol -->
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#db2777" stroke-width="2.5" stroke-linecap="round">
-                    <circle cx="9" cy="9" r="4" fill="#a855f7"></circle>
-                    <circle cx="15" cy="15" r="4" fill="#ec4899"></circle>
-                  </svg>
-                </div>
-                <div class="project-text-block">
-                  <span class="project-name">Cross-Browser Testing</span>
-                  <span class="project-due-date">Due date: Dec 6, 2024</span>
-                </div>
+              <div style="background: var(--bg-subtle); padding: 10px 4px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10px; color: var(--text-muted); font-weight: 700;">Tail Recall</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary-dark);" id="metric-recall">32.2%</div>
+                <div style="font-size: 9.5px; color: var(--accent-amber); font-weight: 700;">Top 20% tails</div>
+              </div>
+              <div style="background: var(--bg-subtle); padding: 10px 4px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10px; color: var(--text-muted); font-weight: 700;">Rubric Score</div>
+                <div style="font-size: 16px; font-weight: 800; color: var(--primary-dark);" id="metric-rubric">29.19</div>
+                <div style="font-size: 9.5px; color: var(--primary-dark); font-weight: 700;">/ 100 max</div>
               </div>
             </div>
           </div>
 
-          <!-- Time Tracker Card -->
+        </div>
+
+        <!-- ==============================
+             RIGHT COLUMN (INSPECTOR, UPLOADER, TIMER)
+             ============================== -->
+        <div class="grid-column">
+          
+          <!-- Tactical Sector Inspector -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="22" y1="12" x2="18" y2="12"></line><line x1="6" y1="12" x2="2" y2="12"></line><line x1="12" y1="6" x2="12" y2="2"></line><line x1="12" y1="22" x2="12" y2="18"></line></svg>
+                Sector Inspector
+              </span>
+              <span class="btn-pill-small" id="inspector-coords-badge">Cell (X: --, Y: --)</span>
+            </div>
+
+            <div class="inspector-detail-grid" id="inspector-grid">
+              <div class="inspector-data-item">
+                <span class="data-item-label">Fire Severity Score:</span>
+                <span class="data-item-val" id="insp-impact">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Crews Dispatched:</span>
+                <span class="data-item-val" id="insp-crews">0 / 4</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Local Temperature:</span>
+                <span class="data-item-val" id="insp-temp">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Wind Speed:</span>
+                <span class="data-item-val" id="insp-wind">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Atmospheric RH:</span>
+                <span class="data-item-val" id="insp-rh">--</span>
+              </div>
+              <div class="inspector-data-item">
+                <span class="data-item-label">Fine Fuel (FFMC):</span>
+                <span class="data-item-val" id="insp-ffmc">--</span>
+              </div>
+            </div>
+            <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px; font-style: italic;">
+              💡 Click any 3D pillar or 9&times;9 matrix cell to inspect.
+            </div>
+          </div>
+
+          <!-- Evaluation CSV Uploader -->
+          <div class="panel-card" id="panel-uploader">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path></svg>
+                Upload Candidate CSV
+              </span>
+            </div>
+
+            <div class="dropzone-box" id="upload-dropzone" onclick="document.getElementById('csv-file-input').click()">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#45c486" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 6px auto; display: block;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <div class="dropzone-title">Drop CSV file here</div>
+              <div class="dropzone-subtitle">or click to browse from device</div>
+              <input type="file" id="csv-file-input" accept=".csv" style="display: none;" />
+            </div>
+            <div id="upload-status" style="margin-top: 8px; font-size: 11px; display: none;"></div>
+          </div>
+
+          <!-- Mission Operations Clock (Donezo Time Tracker) -->
           <div class="time-tracker-card">
-            <div class="time-tracker-title">Time Tracker</div>
+            <div class="time-tracker-title">Mission Operations Clock</div>
             <div class="time-display-digital" id="timerDigitalDisplay">01:24:08</div>
             <div class="time-controls-row">
               <button class="btn-time-control btn-time-pause" id="btnTimerPause" onclick="toggleTimer()" title="Pause / Resume">
-                <svg id="timerPauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <svg id="timerPauseIcon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                   <rect x="6" y="4" width="4" height="16" rx="1"></rect>
                   <rect x="14" y="4" width="4" height="16" rx="1"></rect>
                 </svg>
               </button>
-              <button class="btn-time-control btn-time-stop" id="btnTimerReset" onclick="resetTimer()" title="Reset / Stop">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <button class="btn-time-control btn-time-stop" id="btnTimerReset" onclick="resetTimer()" title="Reset Clock">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                   <rect x="5" y="5" width="14" height="14" rx="2"></rect>
                 </svg>
               </button>
             </div>
           </div>
+
         </div>
 
       </div>
@@ -613,71 +573,7 @@
     </main>
   </div>
 
-  <!-- ==========================================
-       ADD PROJECT MODAL
-       ========================================== -->
-  <div class="modal-backdrop" id="addProjectModal">
-    <div class="modal-window">
-      <div class="modal-header-row">
-        <h3 class="modal-title">Create New Project</h3>
-        <button class="modal-close-btn" onclick="closeAddProjectModal()">✕</button>
-      </div>
-      <form id="addProjectForm" onsubmit="handleCreateProject(event)">
-        <div class="modal-form-group">
-          <label class="modal-label">Project Name</label>
-          <input type="text" id="inputProjName" class="modal-input" placeholder="e.g. Redesign Mobile App UI" required />
-        </div>
-        <div class="modal-form-group">
-          <label class="modal-label">Due Date</label>
-          <input type="text" id="inputProjDueDate" class="modal-input" placeholder="e.g. Dec 15, 2024" required />
-        </div>
-        <div class="modal-form-group">
-          <label class="modal-label">Category / Color Theme</label>
-          <select id="inputProjCategory" class="modal-input">
-            <option value="blue">API & Backend (Blue)</option>
-            <option value="teal">User Onboarding (Teal)</option>
-            <option value="green">Dashboard & Analytics (Green)</option>
-            <option value="orange">Performance Optimization (Orange)</option>
-            <option value="purple">QA & Browser Testing (Purple)</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-primary-dark" style="width: 100%; justify-content: center; margin-top: 10px;">Create Project</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- ==========================================
-       ADD MEMBER MODAL
-       ========================================== -->
-  <div class="modal-backdrop" id="addMemberModal">
-    <div class="modal-window">
-      <div class="modal-header-row">
-        <h3 class="modal-title">Add Team Member</h3>
-        <button class="modal-close-btn" onclick="closeAddMemberModal()">✕</button>
-      </div>
-      <form id="addMemberForm" onsubmit="handleCreateMember(event)">
-        <div class="modal-form-group">
-          <label class="modal-label">Member Full Name</label>
-          <input type="text" id="inputMemberName" class="modal-input" placeholder="e.g. Sophia Martinez" required />
-        </div>
-        <div class="modal-form-group">
-          <label class="modal-label">Assigned Task</label>
-          <input type="text" id="inputMemberTask" class="modal-input" placeholder="e.g. Optimize Database Indexes" required />
-        </div>
-        <div class="modal-form-group">
-          <label class="modal-label">Initial Status</label>
-          <select id="inputMemberStatus" class="modal-input">
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
-            <option value="Pending">Pending</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-primary-dark" style="width: 100%; justify-content: center; margin-top: 10px;">Add Member</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Donezo Dashboard Script -->
-  <script src="/static/js/donezo.js"></script>
+  <!-- Unified Application Script -->
+  <script src="/static/js/app.js"></script>
 </body>
 </html>
