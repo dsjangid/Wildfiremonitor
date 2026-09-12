@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model &amp; Evaluation Analytics — WildfireOps</title>
+  
+  <link rel="stylesheet" href="/static/css/unified.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+  <div class="dashboard-app-frame">
+
+    <!-- ==========================================
+         SIDEBAR NAVIGATION
+         ========================================== -->
+    <aside class="sidebar">
+      <div>
+        <div class="brand-container" onclick="window.location.href='/'">
+          <svg class="brand-logo-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="10" fill="#E8F8F0"/>
+            <path d="M18 10C14.6863 10 12 12.6863 12 16C12 18.5 13.5 20.5 15.5 21.5L18 24L20.5 21.5C22.5 20.5 24 18.5 24 16C24 12.6863 21.3137 10 18 10Z" stroke="#123D2B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="18" cy="15.5" r="2.5" fill="#45C486"/>
+            <path d="M10 18C10 21.3137 12.6863 24 16 24C18.5 24 20.5 22.5 21.5 20.5" stroke="#123D2B" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div>
+            <div class="brand-title">WildfireOps</div>
+            <div class="brand-subtitle">Donezo Tactical Engine</div>
+          </div>
+        </div>
+
+        <div class="nav-section-title">Command</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="/">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+              </svg>
+              <span>3D Terrain Grid</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/portfolio">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+              <span>25 Crews Portfolio</span>
+              <span class="badge-pill" id="sidebar-crew-count">25</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/matrix">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="3" y1="15" x2="21" y2="15"></line>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+                <line x1="15" y1="3" x2="15" y2="21"></line>
+              </svg>
+              <span>9×9 Heat Matrix</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/simulation">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+              </svg>
+              <span>Weather Sandbox</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="/analytics">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 16 12 12 8 16"></polyline>
+                <line x1="12" y1="12" x2="12" y2="21"></line>
+                <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+              </svg>
+              <span>Model &amp; Evaluation</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/assets">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <span>Modular Assets</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title">System &amp; Export</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="/api/download/portfolio" target="_blank" download="selected_portfolio.csv">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>portfolio.csv</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/api/download/predictions" target="_blank" download="predictions.csv">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span>predictions.csv</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="resetToBaseline()" title="Reset back to baseline data">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              <span>Reset Baseline</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-promo-card">
+        <div class="promo-badge-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="promo-title">Matroid Optimizer<br/>Constrained Engine</div>
+        <div class="promo-desc">Strictly ≤ 4 crews per (X, Y) cell. Exactly 25 dispatches.</div>
+        <button class="btn-promo-action" onclick="resetToBaseline()">Reset Baseline</button>
+      </div>
+    </aside>
+
+    <!-- ==========================================
+         MAIN CONTENT AREA
+         ========================================== -->
+    <main class="main-wrapper">
+
+      <div class="topbar">
+        <div class="search-box-container">
+          <svg class="search-icon-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="global-search" class="search-input" placeholder="Search evaluation metrics..." />
+          <span class="search-shortcut-badge">⌘F</span>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="system-status-pill">
+            <span class="status-dot-live"></span>
+            <span id="badge-model">Hurdle Ensemble (Ridge + Huber + Logistic)</span>
+          </div>
+
+          <div class="user-profile-pill">
+            <img class="user-avatar-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Incident Commander" />
+            <div class="user-info-text">
+              <span class="user-name">Incident Commander</span>
+              <span class="user-email" id="eval-source-label">forestfires.csv</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-header">
+        <div class="header-title-group">
+          <h1>Model Architecture &amp; Evaluation Benchmark</h1>
+          <p class="header-subtitle">Multi-task Hurdle-Rank ensemble metrics, scoring formula, and blind dataset evaluator.</p>
+        </div>
+        <div class="header-btn-group">
+          <button class="btn-primary-dark" onclick="document.getElementById('csv-file-input').click()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path></svg>
+            <span>Upload Evaluation CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2-COLUMN ANALYTICS LAYOUT -->
+      <div style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px;">
+        
+        <!-- Column 1: Model Breakdown & Rubric -->
+        <div class="grid-column">
+          
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                Tri-Model Hurdle Architecture
+              </span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <!-- Component 1 -->
+              <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-card); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 800; font-size: 13px; color: var(--primary-dark);">1. L2 Ridge Regressor (Weight: 50%)</div>
+                  <div style="font-size: 11px; color: var(--text-secondary);">Target: log1p(area) • Provides monotonic risk gradient avoiding overfitting.</div>
+                </div>
+                <span class="score-pill-badge">α = 20.0</span>
+              </div>
+
+              <!-- Component 2 -->
+              <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-card); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 800; font-size: 13px; color: var(--primary-dark);">2. Huber Regressor (Weight: 20%)</div>
+                  <div style="font-size: 11px; color: var(--text-secondary);">Target: log1p(area) • Linear penalty for outlier errors > 1.35, resisting 1000 ha fires.</div>
+                </div>
+                <span class="score-pill-badge">ε = 1.35</span>
+              </div>
+
+              <!-- Component 3 -->
+              <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-card); display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <div style="font-weight: 800; font-size: 13px; color: var(--primary-dark);">3. Calibrated Logistic Hurdle (Weight: 30%)</div>
+                  <div style="font-size: 11px; color: var(--text-secondary);">Target: P(area ≥ 80th percentile) • Directly captures high-impact tail events.</div>
+                </div>
+                <span class="score-pill-badge">C = 0.05</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 14px; padding: 10px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; font-size: 11.5px; color: #166534; font-family: monospace;">
+              Score(x) = 0.50·Norm(S_Ridge) + 0.20·Norm(S_Huber) + 0.30·P_Tail
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-header">
+              <span class="panel-title">Competition Evaluation Rubric</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; text-align: center;">
+              <div style="background: var(--bg-subtle); padding: 12px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Mean NDCG@25</div>
+                <div style="font-size: 20px; font-weight: 800; color: var(--primary-dark);" id="metric-ndcg">0.2288</div>
+                <div style="font-size: 10px; color: var(--primary-mint); font-weight: 700;">+106% vs GBDT</div>
+              </div>
+              <div style="background: var(--bg-subtle); padding: 12px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Tail Recall@25</div>
+                <div style="font-size: 20px; font-weight: 800; color: var(--primary-dark);" id="metric-recall">32.2%</div>
+                <div style="font-size: 10px; color: var(--accent-amber); font-weight: 700;">Top 20% tails</div>
+              </div>
+              <div style="background: var(--bg-subtle); padding: 12px; border-radius: 8px; border: 1px solid var(--border-card);">
+                <div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700;">Total Score</div>
+                <div style="font-size: 20px; font-weight: 800; color: var(--primary-dark);" id="metric-rubric">29.19</div>
+                <div style="font-size: 10px; color: var(--primary-dark); font-weight: 700;">/ 100 max</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Column 2: Upload CSV & Zero Leakage Compliance -->
+        <div class="grid-column">
+          
+          <div class="panel-card" id="panel-uploader">
+            <div class="panel-header">
+              <span class="panel-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5"><polyline points="16 16 12 12 8 16"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path></svg>
+                Upload Candidate Evaluation CSV
+              </span>
+            </div>
+
+            <div class="dropzone-box" id="upload-dropzone" style="padding: 28px 16px;" onclick="document.getElementById('csv-file-input').click()">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#45c486" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto 8px auto; display: block;">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              <div class="dropzone-title" style="font-size: 14px;">Drop evaluation CSV file here</div>
+              <div class="dropzone-subtitle" style="font-size: 11.5px; margin-top: 4px;">or click to browse from your filesystem</div>
+              <input type="file" id="csv-file-input" accept=".csv" style="display: none;" />
+            </div>
+
+            <div id="upload-status" style="margin-top: 10px; font-size: 11px; padding: 8px; border-radius: 6px; display: none;"></div>
+
+            <div style="margin-top: 16px; padding: 12px; background: var(--bg-subtle); border-radius: var(--radius-md); border: 1px solid var(--border-card);">
+              <div style="font-weight: 700; font-size: 11.5px; color: var(--primary-dark); margin-bottom: 4px;">Zero-Leakage Protocol:</div>
+              <ul style="padding-left: 16px; font-size: 11px; color: var(--text-secondary); line-height: 1.4;">
+                <li>The evaluation CSV does <b>not</b> require an <code>area</code> column.</li>
+                <li>Feature transforms (VPD, BUI, StandardScalers) are fitted strictly on the training partition.</li>
+                <li>Outputs updated <code>predictions.csv</code> and <code>selected_portfolio.csv</code> instantly.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Hidden canvas for fallback -->
+  <div style="display:none;"><div id="canvas-wrapper"><canvas id="webgl-canvas"></canvas><div id="cell-tooltip"></div></div></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

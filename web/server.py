@@ -284,7 +284,37 @@ def index():
 @app.route("/dashboard")
 def donezo_dashboard():
     """Serve replicated Donezo productivity and task dashboard."""
-    return send_from_directory(app.static_folder, "donezo.html")
+    return send_from_directory(app.static_folder, "index.html")
+
+
+@app.route("/portfolio")
+def portfolio_page():
+    """Serve dedicated 25-crew response portfolio page."""
+    return send_from_directory(app.static_folder, "portfolio.html")
+
+
+@app.route("/matrix")
+def matrix_page():
+    """Serve dedicated 9x9 spatial matrix and heatmap page."""
+    return send_from_directory(app.static_folder, "matrix.html")
+
+
+@app.route("/simulation")
+def simulation_page():
+    """Serve dedicated what-if weather simulation sandbox page."""
+    return send_from_directory(app.static_folder, "simulation.html")
+
+
+@app.route("/analytics")
+def analytics_page():
+    """Serve dedicated ML model evaluation and benchmark analytics page."""
+    return send_from_directory(app.static_folder, "analytics.html")
+
+
+@app.route("/assets")
+def assets_page():
+    """Serve modular asset catalog and visual customization page."""
+    return send_from_directory(app.static_folder, "assets.html")
 
 
 @app.route("/api/status", methods=["GET"])
