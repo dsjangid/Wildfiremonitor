@@ -294,61 +294,63 @@
       </div>
 
       <!-- ==========================================
-           MAIN 3-COLUMN CONTENT GRID
+           FULL-WIDTH 3D TERRAIN STAGE (PANORAMIC COMMAND VIEW)
+           ========================================== -->
+      <div class="panel-card" id="panel-3d-stage" style="margin-bottom: 20px;">
+        <div class="panel-header">
+          <span class="panel-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            3D Montesinho Terrain Grid (9&times;9 Command Stage)
+          </span>
+          <div class="view-btn-group">
+            <button class="view-btn active" id="view-iso">3D Iso</button>
+            <button class="view-btn" id="view-top">Top 2D</button>
+            <button class="view-btn" id="view-low">Horizon</button>
+            <button class="view-btn" id="view-rotate">Rotate</button>
+          </div>
+        </div>
+
+        <!-- Canvas Viewport -->
+        <div class="canvas-wrapper" id="canvas-wrapper">
+          <canvas id="webgl-canvas"></canvas>
+          
+          <!-- HUD info -->
+          <div class="hud-overlay">
+            <div class="hud-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle; margin-right:4px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              Sector Grid: <b>9&times;9 Montesinho Park</b>
+            </div>
+            <div class="hud-tag" id="hud-status-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              Status: <b>Optimal Response Active</b>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="grid-legend">
+            <div style="font-weight: 700;">Fire Risk Index</div>
+            <div class="legend-bar"></div>
+            <div style="display: flex; justify-content: space-between; font-size: 9px; opacity: 0.8;">
+              <span>0.0 (Low)</span>
+              <span>1.0 (Extreme)</span>
+            </div>
+          </div>
+
+          <!-- Raycaster Tooltip -->
+          <div class="cell-floating-tooltip" id="cell-tooltip"></div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           MAIN 3-COLUMN CONTENT GRID (BOTTOM)
            ========================================== -->
       <div class="dashboard-content-grid">
 
         <!-- ==============================
-             LEFT COLUMN (3D STAGE & PORTFOLIO)
+             LEFT COLUMN (PORTFOLIO)
              ============================== -->
         <div class="grid-column">
           
-          <!-- 3D Terrain Grid Stage -->
-          <div class="panel-card" id="panel-3d-stage">
-            <div class="panel-header">
-              <span class="panel-title">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123d2b" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                3D Montesinho Terrain Grid (9&times;9)
-              </span>
-              <div class="view-btn-group">
-                <button class="view-btn active" id="view-iso">3D Iso</button>
-                <button class="view-btn" id="view-top">Top 2D</button>
-                <button class="view-btn" id="view-low">Horizon</button>
-                <button class="view-btn" id="view-rotate">Rotate</button>
-              </div>
-            </div>
-
-            <!-- Canvas Viewport -->
-            <div class="canvas-wrapper" id="canvas-wrapper">
-              <canvas id="webgl-canvas"></canvas>
-              
-              <!-- HUD info -->
-              <div class="hud-overlay">
-                <div class="hud-tag">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle; margin-right:3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                  Sector Grid: <b>9&times;9 Montesinho Park</b>
-                </div>
-                <div class="hud-tag" id="hud-status-badge">
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="display:inline; vertical-align:middle; margin-right:3px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                  Status: <b>Optimal Response Active</b>
-                </div>
-              </div>
-
-              <!-- Legend -->
-              <div class="grid-legend">
-                <div style="font-weight: 700;">Fire Risk Index</div>
-                <div class="legend-bar"></div>
-                <div style="display: flex; justify-content: space-between; font-size: 9px; opacity: 0.8;">
-                  <span>0.0 (Low)</span>
-                  <span>1.0 (Extreme)</span>
-                </div>
-              </div>
-
-              <!-- Raycaster Tooltip -->
-              <div class="cell-floating-tooltip" id="cell-tooltip"></div>
-            </div>
-          </div>
-
           <!-- Response Portfolio Table (25 Dispatched Crews) -->
           <div class="panel-card" id="panel-portfolio">
             <div class="panel-header">
