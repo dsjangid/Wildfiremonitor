@@ -15,9 +15,17 @@
   let loadedCount = 0;
   let currentFrameIndex = 1;
   let targetFrameIndex = 1;
-  let lastDrawnFrameIndex = 1;
+  let currentlyDrawnFrameIndex = -1;
   let isTicking = false;
   let canvas, ctx;
+
+  // Cached layout metrics to avoid any reflow or recomputation during render
+  let cachedW = 0;
+  let cachedH = 0;
+  let cachedRenderX = 0;
+  let cachedRenderY = 0;
+  let cachedRenderW = 0;
+  let cachedRenderH = 0;
 
   function getFramePath(index) {
     const padded = String(index).padStart(3, '0');
@@ -27,16 +35,17 @@
   function initPreloader() {
     canvas = document.getElementById('bg-canvas');
     if (!canvas) return;
-    ctx = canvas.getContext('2d', { alpha: false });
+    ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
 
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
 
-    const initialBatch = 35;
+    const initialBatch = 20;
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
       img.src = getFramePath(i);
-      img.onload = () => {
+      
+      const onLoaded = () => {
         loadedCount++;
         const percent = Math.round((loadedCount / TOTAL_FRAMES) * 100);
         const bar = document.getElementById('loader-bar');
@@ -44,7 +53,9 @@
         if (bar) bar.style.width = `${percent}%`;
         if (text) text.textContent = `INITIALIZING TELEMETRY (${percent}%)`;
 
-        if (i === 1) drawFrame(1);
+        if (i === 1 && currentlyDrawnFrameIndex === -1) {
+          drawFrame(1);
+        }
 
         if (loadedCount >= initialBatch) {
           const preloader = document.getElementById('preloader');
@@ -53,6 +64,15 @@
           }
         }
       };
+
+      if ('decode' in img) {
+        img.decode().then(onLoaded).catch(() => {
+          img.onload = onLoaded;
+        });
+      } else {
+        img.onload = onLoaded;
+      }
+
       images[i] = img;
     }
   }
@@ -60,54 +80,47 @@
   function resizeCanvas() {
     if (!canvas || !ctx) return;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = window.innerWidth * dpr;
-    canvas.height = window.innerHeight * dpr;
+    cachedW = window.innerWidth;
+    cachedH = window.innerHeight;
+
+    canvas.width = cachedW * dpr;
+    canvas.height = cachedH * dpr;
     ctx.scale(dpr, dpr);
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
+
+    // 2K QHD aspect ratio is 2560x1440 (16:9)
+    const imgRatio = 16 / 9;
+    const canvasRatio = cachedW / cachedH;
+
+    if (canvasRatio > imgRatio) {
+      cachedRenderW = cachedW;
+      cachedRenderH = cachedW / imgRatio;
+      cachedRenderX = 0;
+      cachedRenderY = (cachedH - cachedRenderH) / 2;
+    } else {
+      cachedRenderH = cachedH;
+      cachedRenderW = cachedH * imgRatio;
+      cachedRenderX = (cachedW - cachedRenderW) / 2;
+      cachedRenderY = 0;
+    }
+
+    currentlyDrawnFrameIndex = -1;
     drawFrame(Math.round(currentFrameIndex) || 1);
   }
 
   function drawFrame(frameNumber) {
-    let img = images[frameNumber];
-    if (!img || !img.complete || img.naturalWidth === 0) {
-      img = images[lastDrawnFrameIndex];
-    }
+    const img = images[frameNumber];
     if (!img || !img.complete || img.naturalWidth === 0 || !canvas || !ctx) return;
 
-    lastDrawnFrameIndex = frameNumber;
+    if (frameNumber === currentlyDrawnFrameIndex) return;
+    currentlyDrawnFrameIndex = frameNumber;
 
-    const canvasW = window.innerWidth;
-    const canvasH = window.innerHeight;
-    const imgW = img.naturalWidth;
-    const imgH = img.naturalHeight;
-
-    const imgRatio = imgW / imgH;
-    const canvasRatio = canvasW / canvasH;
-
-    let renderW, renderH, renderX, renderY;
-
-    if (canvasRatio > imgRatio) {
-      renderW = canvasW;
-      renderH = canvasW / imgRatio;
-      renderX = 0;
-      renderY = (canvasH - renderH) / 2;
-    } else {
-      renderH = canvasH;
-      renderW = canvasH * imgRatio;
-      renderX = (canvasW - renderW) / 2;
-      renderY = 0;
-    }
-
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    ctx.fillStyle = BG_SAND_COLOR;
-    ctx.fillRect(0, 0, canvasW, canvasH);
-    ctx.drawImage(img, renderX, renderY, renderW, renderH);
+    ctx.drawImage(img, cachedRenderX, cachedRenderY, cachedRenderW, cachedRenderH);
   }
 
   function updateScroll() {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const maxScroll = document.documentElement.scrollHeight - cachedH;
     const scrollTop = window.scrollY || window.pageYOffset;
     const progress = Math.min(Math.max(scrollTop / (maxScroll || 1), 0), 1);
 
@@ -121,8 +134,8 @@
 
   function renderLoop() {
     const diff = targetFrameIndex - currentFrameIndex;
-    if (Math.abs(diff) > 0.01) {
-      currentFrameIndex += diff * 0.14;
+    if (Math.abs(diff) > 0.005) {
+      currentFrameIndex += diff * 0.11;
       const frameToDraw = Math.round(Math.min(Math.max(currentFrameIndex, 1), TOTAL_FRAMES));
       drawFrame(frameToDraw);
       window.requestAnimationFrame(renderLoop);

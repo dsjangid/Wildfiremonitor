@@ -52,6 +52,8 @@ html {
   color: var(--text-main);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -61,7 +63,7 @@ body {
   line-height: 1.6;
 }
 
-/* Background Canvas Layer */
+/* Background Canvas Layer (GPU Promoted) */
 #bg-canvas-container {
   position: fixed;
   top: 0;
@@ -72,6 +74,8 @@ body {
   pointer-events: none;
   overflow: hidden;
   background-color: var(--bg-sand);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 #bg-canvas {
@@ -81,6 +85,7 @@ body {
   display: block;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: auto;
+  transform: translate3d(0, 0, 0);
 }
 
 /* Atmospheric Horizon Lighting Overlay */
@@ -92,6 +97,7 @@ body {
   height: 100vh;
   z-index: 1;
   pointer-events: none;
+  transform: translate3d(0, 0, 0);
   background: 
     radial-gradient(circle at 50% 28%, rgba(255, 160, 40, 0.08) 0%, transparent 65%),
     linear-gradient(180deg, rgba(15, 12, 9, 0.35) 0%, rgba(15, 12, 9, 0.08) 35%, rgba(15, 12, 9, 0.25) 70%, rgba(15, 12, 9, 0.6) 100%);
@@ -102,6 +108,7 @@ body {
   position: relative;
   z-index: 2;
   width: 100%;
+  transform: translate3d(0, 0, 0);
 }
 
 .container {
@@ -475,15 +482,17 @@ body {
 /* Editorial Glass Card Components */
 .glass-card {
   background: var(--card-bg);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: 1px solid var(--card-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--card-shadow);
   padding: 38px;
-  transition: all 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  contain: paint;
 }
 
 .glass-card::after {
@@ -501,7 +510,7 @@ body {
 
 .glass-card:hover {
   background: var(--card-bg-hover);
-  transform: translateY(-4px);
+  transform: translate3d(0, -4px, 0);
   border-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5);
 }
@@ -884,12 +893,14 @@ input[type=range]::-webkit-slider-thumb {
   z-index: 1;
   animation: floatEmber linear infinite;
   opacity: 0;
+  will-change: transform, opacity;
+  contain: layout style paint;
 }
 @keyframes floatEmber {
-  0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity: 0; }
+  0% { transform: translate3d(0, 100vh, 0) scale(0.5); opacity: 0; }
   10% { opacity: 0.8; }
   90% { opacity: 0.4; }
-  100% { transform: translateY(-20vh) translateX(30px) scale(1.2); opacity: 0; }
+  100% { transform: translate3d(30px, -20vh, 0) scale(1.2); opacity: 0; }
 }
 
 /* Back to Top */
