@@ -68,26 +68,25 @@ const EMBEDDED_BASELINE = {"crews":[{"DC":671.2,"DMC":181.1,"FFMC":96.1,"ISI":14
   // =========================================================================
   // Initialize Application
   // =========================================================================
-  async function init() {
+    async function init() {
     setupSliders();
     setupPresetButtons();
     setupUpload();
     setupSearchFilter();
     setupMissionTimer();
 
-    if (isThreeAvailable) {
-      initThreeScene();
-    } else {
-      console.warn("Three.js not loaded, using isometric Canvas fallback.");
-      initCanvasFallback();
+    if (canvasWrapper && webglCanvas) {
+      if (isThreeAvailable) {
+        initThreeScene();
+      } else {
+        console.warn("Three.js not loaded, using isometric Canvas fallback.");
+        initCanvasFallback();
+      }
     }
 
     await fetchGridData();
   }
 
-  // =========================================================================
-  // 3D Three.js Spatial Grid Visualization
-  // =========================================================================
   function initThreeScene() {
     try {
       scene = new THREE.Scene();
@@ -449,8 +448,8 @@ const EMBEDDED_BASELINE = {"crews":[{"DC":671.2,"DMC":181.1,"FFMC":96.1,"ISI":14
   // =========================================================================
   // Tooltip & Tactical Sector Inspector
   // =========================================================================
-  function showTooltip(cell, clientX, clientY) {
-    if (!cell || !tooltip) return;
+    function showTooltip(cell, clientX, clientY) {
+    if (!cell || !tooltip || !canvasWrapper) return;
     tooltip.innerHTML = `
       <div style="font-weight:700; margin-bottom:2px;">Sector (X:${cell.x}, Y:${cell.y})</div>
       <div>Fire Risk: <b>${(cell.avg_impact || 0).toFixed(3)}</b></div>
