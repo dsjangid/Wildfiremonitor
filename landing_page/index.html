@@ -12,6 +12,13 @@
   
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
+
+  <!-- Authentication Guard -->
+  <script>
+    if (!sessionStorage.getItem('wildfire_auth')) {
+      window.location.replace('login.html');
+    }
+  </script>
 </head>
 <body>
 
@@ -56,16 +63,21 @@
     </ul>
 
     <div class="nav-right-controls">
-      <div class="control-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        <span>EN</span>
+      <div style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #45c486; background: rgba(69, 196, 134, 0.12); border: 1px solid rgba(69, 196, 134, 0.35); border-radius: var(--radius-pill); padding: 5px 12px;">
+        <span style="width: 6px; height: 6px; background: #45c486; border-radius: 50%; box-shadow: 0 0 6px #45c486;"></span>
+        <span>COMMANDER</span>
       </div>
+
       <a href="dashboard.html" target="_blank" class="control-btn" title="Launch Tactical Command Console">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </a>
+
+      <button onclick="sessionStorage.clear(); location.href='login.html';" title="Terminate Session" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.25); color: rgba(255,255,255,0.85); border-radius: var(--radius-pill); padding: 5px 12px; font-size: 11px; font-weight: 700; font-family: var(--font-mono); cursor: pointer; transition: all 0.2s ease;">
+        EXIT
+      </button>
     </div>
   </header>
 

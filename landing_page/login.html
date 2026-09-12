@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gateway Authentication — Wildfire Monitor</title>
+  <meta name="description" content="Secure operational terminal gateway for Wildfire Monitor predictive response & tactical dispatch.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔥</text></svg>">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      backdrop-filter: blur(32px) saturate(190%);
+      -webkit-backdrop-filter: blur(32px) saturate(190%);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      padding: 44px 40px;
+      position: relative;
+      overflow: hidden;
+      animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cardFadeIn {
+      0% { opacity: 0; transform: translateY(30px) scale(0.97); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .login-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+      transition: left 0.8s ease;
+      pointer-events: none;
+    }
+
+    .login-card:hover::after {
+      left: 100%;
+    }
+
+    .login-brand-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .login-brand-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(255, 160, 40, 0.15);
+      border: 1.5px solid rgba(255, 160, 40, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber-bright);
+      box-shadow: 0 0 25px rgba(255, 160, 40, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .login-brand-title {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+      margin-bottom: 6px;
+    }
+
+    .login-brand-subtitle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-bright);
+      text-shadow: 0 0 8px rgba(255, 160, 40, 0.5);
+    }
+
+    .login-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: #45c486;
+      background: rgba(69, 196, 134, 0.12);
+      border: 1px solid rgba(69, 196, 134, 0.35);
+      border-radius: var(--radius-pill);
+      padding: 4px 12px;
+      margin-bottom: 22px;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .login-status-dot {
+      width: 7px;
+      height: 7px;
+      background: #45c486;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #45c486;
+      animation: statusPulse 2s infinite;
+    }
+
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-soft);
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    }
+
+    .form-group select {
+      width: 100%;
+      background: rgba(20, 16, 12, 0.65);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      color: #ffffff;
+      outline: none;
+      cursor: pointer;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    .form-group select option {
+      background: #19140f;
+      color: #ffffff;
+    }
+
+    .login-btn-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-auth-submit {
+      width: 100%;
+      padding: 15px;
+      font-size: 13.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-demo-bypass {
+      width: 100%;
+      padding: 13px;
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      border-radius: var(--radius-pill);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-demo-bypass:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .login-security-footer {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid var(--card-border-subtle);
+      padding-top: 20px;
+      margin-top: 24px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    .login-security-footer span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Auth Success Transition Animation */
+    .auth-success-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(20, 16, 12, 0.95);
+      backdrop-filter: blur(30px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 100;
+      border-radius: var(--radius-lg);
+    }
+
+    .auth-success-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Scrollytelling Video Canvas -->
+  <div id="bg-canvas-container">
+    <canvas id="bg-canvas"></canvas>
+  </div>
+
+  <!-- Atmospheric Horizon Lighting Overlay -->
+  <div class="viewport-overlay"></div>
+
+  <!-- Floating Ember Particles -->
+  <div id="ember-container"></div>
+
+  <!-- Main Login Interface -->
+  <main class="login-wrapper">
+    <div class="login-card">
+      
+      <!-- Brand Header -->
+      <div class="login-brand-header">
+        <div class="login-brand-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 2 22 22 22 12 2"></polygon>
+            <circle cx="12" cy="15" r="2.5"></circle>
+          </svg>
+        </div>
+        <h1 class="login-brand-title">WILDFIRE MONITOR</h1>
+        <div class="login-brand-subtitle">OPERATIONAL DECISION GATEWAY</div>
+      </div>
+
+      <!-- Live Session Status -->
+      <div style="display: flex; justify-content: center;">
+        <div class="login-status-pill">
+          <span class="login-status-dot"></span>
+          <span>GATEWAY READY // ZERO-TRUST TERMINAL</span>
+        </div>
+      </div>
+
+      <!-- Authentication Form -->
+      <form id="login-form" onsubmit="handleAuth(event)">
+        
+        <div class="form-group">
+          <label for="auth-email">Dispatcher / Operator ID</label>
+          <input type="email" id="auth-email" class="form-input" value="commander.chen@montesinho.ops" placeholder="commander@agency.gov" required>
+        </div>
+
+        <div class="form-group">
+          <label for="auth-key">Security Access Passcode</label>
+          <input type="password" id="auth-key" class="form-input" value="••••••••••••" placeholder="Enter session passcode" required>
+        </div>
+
+        <div class="form-group">
+          <label for="auth-region">Ecological Sector Jurisdiction</label>
+          <select id="auth-region" class="form-select">
+            <option value="montesinho" selected>Montesinho Natural Park (9×9 Sector Grid)</option>
+            <option value="algarve">Algarve Coastal Fire Division</option>
+            <option value="estrela">Serra da Estrela Mountain Reserve</option>
+          </select>
+        </div>
+
+        <div class="login-btn-stack">
+          <button type="submit" class="btn-solid-amber btn-auth-submit" id="btn-submit">
+            <span>Authenticate &amp; Launch Web</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+
+          <button type="button" class="btn-demo-bypass" onclick="quickDemoAccess()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span>Instant Demo Access (One-Click)</span>
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Security Telemetry Badges -->
+      <div class="login-security-footer">
+        <span>🔒 256-Bit Telemetry</span>
+        <span>🛡️ Matroid Solver</span>
+        <span>⚡ 5-Fold CV</span>
+      </div>
+
+      <!-- Success Overlay Transition -->
+      <div class="auth-success-overlay" id="auth-success">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(69, 196, 134, 0.2); border: 2px solid #45c486; display: flex; align-items: center; justify-content: center; color: #45c486; box-shadow: 0 0 25px rgba(69, 196, 134, 0.5);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3 style="font-size: 18px; font-weight: 800; color: #ffffff;">Access Granted</h3>
+        <p style="font-family: var(--font-mono); font-size: 11px; color: var(--amber-bright); letter-spacing: 0.1em;" id="auth-status-text">INITIALIZING TELEMETRY STREAM...</p>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Simple Auth Handler
+    function handleAuth(e) {
+      if (e) e.preventDefault();
+      const email = document.getElementById('auth-email').value || 'commander.chen@montesinho.ops';
+      const region = document.getElementById('auth-region').value || 'montesinho';
+      
+      sessionStorage.setItem('wildfire_auth', 'true');
+      sessionStorage.setItem('wildfire_user', email.split('@')[0]);
+      sessionStorage.setItem('wildfire_region', region);
+
+      const overlay = document.getElementById('auth-success');
+      const statusText = document.getElementById('auth-status-text');
+      if (overlay) overlay.classList.add('active');
+
+      setTimeout(() => {
+        if (statusText) statusText.textContent = 'ROUTING TO PRODUCT WEB PLATFORM...';
+      }, 400);
+
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 900);
+    }
+
+    function quickDemoAccess() {
+      handleAuth(null);
+    }
+
+    // Initialize ambient ember particles on login page
+    function initEmberParticles() {
+      const container = document.getElementById('ember-container');
+      if (!container) return;
+      const EMBER_COUNT = 16;
+      for (let i = 0; i < EMBER_COUNT; i++) {
+        const ember = document.createElement('div');
+        ember.className = 'ember-particle';
+        ember.style.left = Math.random() * 100 + 'vw';
+        ember.style.animationDuration = (8 + Math.random() * 12) + 's';
+        ember.style.animationDelay = (Math.random() * 8) + 's';
+        ember.style.width = (2 + Math.random() * 4) + 'px';
+        ember.style.height = ember.style.width;
+        container.appendChild(ember);
+      }
+    }
+
+    // Static frame backdrop
+    function initCanvasBackdrop() {
+      const canvas = document.getElementById('bg-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d', { alpha: false });
+      const img = new Image();
+      img.src = 'assets/frames/frame_001.jpg';
+      img.onload = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        ctx.scale(dpr, dpr);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+
+        const canvasW = window.innerWidth;
+        const canvasH = window.innerHeight;
+        const imgRatio = img.naturalWidth / img.naturalHeight;
+        const canvasRatio = canvasW / canvasH;
+
+        let renderW, renderH, renderX, renderY;
+        if (canvasRatio > imgRatio) {
+          renderW = canvasW;
+          renderH = canvasW / imgRatio;
+          renderX = 0;
+          renderY = (canvasH - renderH) / 2;
+        } else {
+          renderH = canvasH;
+          renderW = canvasH * imgRatio;
+          renderX = (canvasW - renderW) / 2;
+          renderY = 0;
+        }
+        ctx.drawImage(img, renderX, renderY, renderW, renderH);
+      };
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initCanvasBackdrop();
+      initEmberParticles();
+    });
+  </script>
+</body>
+</html>
