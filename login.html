@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gateway Authentication — Wildfire Monitor</title>
-  <meta name="description" content="Secure operational terminal gateway for Wildfire Monitor predictive response & tactical dispatch.">
+  <title>Enterprise Sign In — Wildfire Monitor</title>
+  <meta name="description" content="Secure operational platform sign in for Wildfire Monitor predictive response & tactical dispatch.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🔥</text></svg>">
   
   <!-- Stylesheets -->
@@ -24,35 +24,22 @@
 
     .login-card {
       width: 100%;
-      max-width: 480px;
+      max-width: 460px;
       background: var(--card-bg);
-      backdrop-filter: blur(32px) saturate(190%);
-      -webkit-backdrop-filter: blur(32px) saturate(190%);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
       border: 1px solid var(--card-border);
       border-radius: var(--radius-lg);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-      padding: 44px 40px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      padding: 44px 38px;
       position: relative;
       overflow: hidden;
       animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     @keyframes cardFadeIn {
-      0% { opacity: 0; transform: translateY(30px) scale(0.97); }
+      0% { opacity: 0; transform: translateY(24px) scale(0.98); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .login-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-      transition: left 0.8s ease;
-      pointer-events: none;
-    }
-
-    .login-card:hover::after {
-      left: 100%;
     }
 
     .login-brand-header {
@@ -60,73 +47,41 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .login-brand-icon {
-      width: 58px;
-      height: 58px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       background: rgba(255, 160, 40, 0.15);
-      border: 1.5px solid rgba(255, 160, 40, 0.6);
+      border: 1.5px solid rgba(255, 160, 40, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--amber-bright);
-      box-shadow: 0 0 25px rgba(255, 160, 40, 0.4);
-      margin-bottom: 16px;
+      box-shadow: 0 0 20px rgba(255, 160, 40, 0.3);
+      margin-bottom: 14px;
     }
 
     .login-brand-title {
       font-family: var(--font-display);
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 900;
       letter-spacing: 0.06em;
       color: #ffffff;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .login-brand-subtitle {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--amber-bright);
-      text-shadow: 0 0 8px rgba(255, 160, 40, 0.5);
-    }
-
-    .login-status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      color: #45c486;
-      background: rgba(69, 196, 134, 0.12);
-      border: 1px solid rgba(69, 196, 134, 0.35);
-      border-radius: var(--radius-pill);
-      padding: 4px 12px;
-      margin-bottom: 22px;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .login-status-dot {
-      width: 7px;
-      height: 7px;
-      background: #45c486;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #45c486;
-      animation: statusPulse 2s infinite;
-    }
-
-    @keyframes statusPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+      text-shadow: 0 0 8px rgba(255, 160, 40, 0.4);
     }
 
     .form-group {
@@ -171,8 +126,8 @@
 
     .btn-auth-submit {
       width: 100%;
-      padding: 15px;
-      font-size: 13.5px;
+      padding: 14px;
+      font-size: 13px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -208,7 +163,7 @@
 
     .login-security-footer {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       border-top: 1px solid var(--card-border-subtle);
       padding-top: 20px;
       margin-top: 24px;
@@ -268,38 +223,30 @@
       <!-- Brand Header -->
       <div class="login-brand-header">
         <div class="login-brand-icon">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="12 2 2 22 22 22 12 2"></polygon>
             <circle cx="12" cy="15" r="2.5"></circle>
           </svg>
         </div>
         <h1 class="login-brand-title">WILDFIRE MONITOR</h1>
-        <div class="login-brand-subtitle">OPERATIONAL DECISION GATEWAY</div>
-      </div>
-
-      <!-- Live Session Status -->
-      <div style="display: flex; justify-content: center;">
-        <div class="login-status-pill">
-          <span class="login-status-dot"></span>
-          <span>GATEWAY READY // ZERO-TRUST TERMINAL</span>
-        </div>
+        <div class="login-brand-subtitle">ENTERPRISE CLIENT PORTAL</div>
       </div>
 
       <!-- Authentication Form -->
       <form id="login-form" onsubmit="handleAuth(event)">
         
         <div class="form-group">
-          <label for="auth-email">Dispatcher / Operator ID</label>
-          <input type="email" id="auth-email" class="form-input" value="commander.chen@montesinho.ops" placeholder="commander@agency.gov" required>
+          <label for="auth-email">Work Email</label>
+          <input type="email" id="auth-email" class="form-input" value="sarah.chen@montesinho-park.org" placeholder="sarah.chen@agency.gov" required>
         </div>
 
         <div class="form-group">
-          <label for="auth-key">Security Access Passcode</label>
-          <input type="password" id="auth-key" class="form-input" value="••••••••••••" placeholder="Enter session passcode" required>
+          <label for="auth-key">Password / Token</label>
+          <input type="password" id="auth-key" class="form-input" value="••••••••••••" placeholder="Enter password" required>
         </div>
 
         <div class="form-group">
-          <label for="auth-region">Ecological Sector Jurisdiction</label>
+          <label for="auth-region">Deployment Sector</label>
           <select id="auth-region" class="form-select">
             <option value="montesinho" selected>Montesinho Natural Park (9×9 Sector Grid)</option>
             <option value="algarve">Algarve Coastal Fire Division</option>
@@ -309,18 +256,15 @@
 
         <div class="login-btn-stack">
           <button type="submit" class="btn-solid-amber btn-auth-submit" id="btn-submit">
-            <span>Authenticate &amp; Launch Web</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <span>Sign In to Platform</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"></line>
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </button>
 
           <button type="button" class="btn-demo-bypass" onclick="quickDemoAccess()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-            <span>Instant Demo Access (One-Click)</span>
+            <span>Quick Demo Access</span>
           </button>
         </div>
 
@@ -328,19 +272,19 @@
 
       <!-- Security Telemetry Badges -->
       <div class="login-security-footer">
-        <span>🔒 256-Bit Telemetry</span>
-        <span>🛡️ Matroid Solver</span>
-        <span>⚡ 5-Fold CV</span>
+        <span>Enterprise SSO</span>
+        <span>256-Bit Encryption</span>
+        <span>SOC-2 Ready</span>
       </div>
 
       <!-- Success Overlay Transition -->
       <div class="auth-success-overlay" id="auth-success">
-        <div style="width: 52px; height: 52px; border-radius: 50%; background: rgba(69, 196, 134, 0.2); border: 2px solid #45c486; display: flex; align-items: center; justify-content: center; color: #45c486; box-shadow: 0 0 25px rgba(69, 196, 134, 0.5);">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <div style="width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 160, 40, 0.2); border: 2px solid var(--amber-bright); display: flex; align-items: center; justify-content: center; color: var(--amber-bright); box-shadow: 0 0 20px rgba(255, 160, 40, 0.4);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
-        <h3 style="font-size: 18px; font-weight: 800; color: #ffffff;">Access Granted</h3>
+        <h3 style="font-size: 17px; font-weight: 800; color: #ffffff;">Authenticated</h3>
         <p style="font-family: var(--font-mono); font-size: 11px; color: var(--amber-bright); letter-spacing: 0.1em;" id="auth-status-text">INITIALIZING TELEMETRY STREAM...</p>
       </div>
 
@@ -348,10 +292,9 @@
   </main>
 
   <script>
-    // Simple Auth Handler
     function handleAuth(e) {
       if (e) e.preventDefault();
-      const email = document.getElementById('auth-email').value || 'commander.chen@montesinho.ops';
+      const email = document.getElementById('auth-email').value || 'sarah.chen@montesinho-park.org';
       const region = document.getElementById('auth-region').value || 'montesinho';
       
       sessionStorage.setItem('wildfire_auth', 'true');
@@ -364,11 +307,11 @@
 
       setTimeout(() => {
         if (statusText) statusText.textContent = 'ROUTING TO PRODUCT WEB PLATFORM...';
-      }, 400);
+      }, 350);
 
       setTimeout(() => {
         window.location.href = 'index.html';
-      }, 900);
+      }, 750);
     }
 
     function quickDemoAccess() {
@@ -396,7 +339,7 @@
     function initCanvasBackdrop() {
       const canvas = document.getElementById('bg-canvas');
       if (!canvas) return;
-      const ctx = canvas.getContext('2d', { alpha: false });
+      const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
       const img = new Image();
       img.src = 'assets/frames/frame_001.jpg';
       img.onload = () => {
@@ -409,7 +352,7 @@
 
         const canvasW = window.innerWidth;
         const canvasH = window.innerHeight;
-        const imgRatio = img.naturalWidth / img.naturalHeight;
+        const imgRatio = 16 / 9;
         const canvasRatio = canvasW / canvasH;
 
         let renderW, renderH, renderX, renderY;
