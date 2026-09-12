@@ -280,6 +280,13 @@ def index():
     return send_from_directory(app.static_folder, "index.html")
 
 
+@app.route("/donezo")
+@app.route("/dashboard")
+def donezo_dashboard():
+    """Serve replicated Donezo productivity and task dashboard."""
+    return send_from_directory(app.static_folder, "donezo.html")
+
+
 @app.route("/api/status", methods=["GET"])
 def api_status():
     """Return model status, training statistics, and current configuration."""
