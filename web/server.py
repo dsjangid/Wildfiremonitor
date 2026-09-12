@@ -317,14 +317,6 @@ def assets_page():
     return send_from_directory(app.static_folder, "assets.html")
 
 
-@app.route("/legacy")
-@app.route("/prev")
-@app.route("/old")
-def legacy_dashboard():
-    """Serve the original dark cyberpunk tactical 3D dashboard for side-by-side comparison."""
-    return send_from_directory(app.static_folder, "legacy_dashboard.html")
-
-
 
 @app.route("/api/status", methods=["GET"])
 def api_status():
